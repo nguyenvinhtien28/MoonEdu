@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sakura_base/const/constants.dart';
 import 'package:flutter_sakura_base/ui/route/router.gr.dart';
 import 'package:flutter_sakura_base/utils/responsive.dart';
+import 'package:sizer/sizer.dart';
 
 class App extends HookWidget {
   const App({Key? key}) : super(key: key);
@@ -10,15 +11,17 @@ class App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = useMemoized(AppRouter.new);
-    return _AppResponsive(
-      child: MaterialApp.router(
-        title: 'Moon Edu',
-        theme: kLightThemeData,
-        darkTheme: kDarkThemeData,
-        routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(),
-      ),
-    );
+    return Sizer(builder: (context, orientation, deviceType) {
+      return _AppResponsive(
+        child: MaterialApp.router(
+          title: 'Moon Edu',
+          theme: kLightThemeData,
+          darkTheme: kDarkThemeData,
+          routeInformationParser: appRouter.defaultRouteParser(),
+          routerDelegate: appRouter.delegate(),
+        ),
+      );
+    });
   }
 }
 

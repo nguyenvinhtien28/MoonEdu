@@ -7,22 +7,22 @@ part of constants;
 class AppColors {
   AppColors._();
 
-  static const MaterialColor pink = MaterialColor(
+  static const MaterialColor blue = MaterialColor(
     _pinkPrimaryValue,
     <int, Color>{
       50: Color(0xFFFFEAEE),
-      100: Color(0xFFFFCBD4),
-      200: Color(0xFFFFA8B7),
-      300: Color(0xFFFF859A),
-      400: Color(0xFFFF6A84),
+      100: Color(0xFF8FC1F1),
+      200: Color(0xFF6A98C7),
+      300: Color(0xFF79A3E7),
+      400: Color(0xFF527394),
       500: Color(_pinkPrimaryValue),
-      600: Color(0xFFFF4966),
-      700: Color(0xFFFF405B),
-      800: Color(0xFFFF3751),
-      900: Color(0xFFFF273F),
+      600: Color(0xFF48637D),
+      700: Color(0xFF3A5671),
+      800: Color(0xFF32495A),
+      900: Color(0xFF273A49),
     },
   );
-  static const int _pinkPrimaryValue = 0xFFFF506E;
+  static const int _pinkPrimaryValue = 0xFF4A638C;
 
   static const MaterialColor pinkAccent = MaterialColor(
     _pinkAccent,
@@ -42,5 +42,5 @@ class AppColors {
   static const Color black = Color(0xFF000000);
 
   /// #9E9E9E
-  static const Color grey = Color(0xFF9E9E9E);
+  static const Color grey = Color(0xFFCACACA);
 }

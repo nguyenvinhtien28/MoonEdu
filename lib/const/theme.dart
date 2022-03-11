@@ -2,20 +2,20 @@ part of constants;
 
 final kLightThemeData = ThemeData(
   brightness: Brightness.light,
-  primarySwatch: AppColors.pink,
+  primarySwatch: AppColors.blue,
   visualDensity: VisualDensity.adaptivePlatformDensity,
-  primaryColor: AppColors.pink,
+  primaryColor: AppColors.blue,
   hintColor: Colors.grey,
   dividerTheme: const DividerThemeData(space: 1),
   scaffoldBackgroundColor: AppColors.white,
   primaryTextTheme: const TextTheme(
     subtitle1: TextStyle(
-      color: AppColors.pink,
+      color: AppColors.blue,
       fontSize: FontSize.small,
     ),
   ),
   appBarTheme: _kAppBarTheme.copyWith(
-    color: AppColors.pink,
+    color: AppColors.blue,
     systemOverlayStyle: SystemUiOverlayStyle.light,
   ),
 );
@@ -23,20 +23,20 @@ final kLightThemeData = ThemeData(
 final kDarkThemeData = ThemeData(
   brightness: Brightness.dark,
   visualDensity: VisualDensity.adaptivePlatformDensity,
-  primaryColor: AppColors.pink[700],
+  primaryColor: AppColors.blue[700],
   scaffoldBackgroundColor: Colors.grey[700],
-  toggleableActiveColor: AppColors.pink,
+  toggleableActiveColor: AppColors.blue,
   primaryTextTheme: const TextTheme(
     subtitle1: TextStyle(
-      color: AppColors.pink,
+      color: AppColors.blue,
       fontSize: FontSize.small,
     ),
   ),
   colorScheme: const ColorScheme.dark().copyWith(
-    primary: AppColors.pink[400],
+    primary: AppColors.blue[400],
   ),
   appBarTheme: _kAppBarTheme.copyWith(
-    color: AppColors.pink,
+    color: AppColors.blue,
     systemOverlayStyle: SystemUiOverlayStyle.dark,
   ),
 );

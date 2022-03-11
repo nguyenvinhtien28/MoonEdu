@@ -413,7 +413,7 @@ class TextArea extends HookWidget {
     return OutlineInputBorder(
       borderRadius: textAreaType.borderRadius,
       borderSide: BorderSide(
-        color: isGlassMorphismStyle ? Colors.transparent : AppColors.pink,
+        color: isGlassMorphismStyle ? Colors.transparent : AppColors.blue,
       ),
     );
   }
