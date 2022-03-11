@@ -30,8 +30,23 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/news.svg
   SvgGenImage get news => const SvgGenImage('assets/svgs/news.svg');
 
-  /// File path: assets/svgs/video.svg
-  SvgGenImage get video => const SvgGenImage('assets/svgs/video.svg');
+  /// File path: assets/svgs/news.svg
+  SvgGenImage get house => const SvgGenImage('assets/svgs/house-solid.svg');
+
+  /// File path: assets/svgs/news.svg
+  SvgGenImage get topic => const SvgGenImage('assets/svgs/earth-americas-solid.svg');
+
+  /// File path: assets/svgs/news.svg
+  SvgGenImage get practice => const SvgGenImage('assets/svgs/bullseye-solid.svg');
+
+  /// File path: assets/svgs/news.svg
+  SvgGenImage get profile => const SvgGenImage('assets/svgs/user-astronaut-solid.svg');
+
+  /// File path: assets/svgs/discover.svg
+  SvgGenImage get video => const SvgGenImage('assets/svgs/discover.svg');
+
+  /// File path: assets/svgs/discover.svg
+  SvgGenImage get discover => const SvgGenImage('assets/svgs/compass-solid.svg');
 }
 
 class $AssetsVideosGen {

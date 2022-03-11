@@ -24,7 +24,7 @@ class GlassMorphismButton extends HookWidget {
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        splashColor: AppColors.pink,
+        splashColor: AppColors.blue,
         onTap: onTap,
         child: GlassMorphism(
           height: Responsive.isMobile ? 50 : 60,

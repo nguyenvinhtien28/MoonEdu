@@ -58,8 +58,9 @@ class GlassMorphism extends HookWidget {
           height: height,
           padding: padding,
           decoration: BoxDecoration(
-            color: color.withOpacity(opacity),
+            color: AppColors.white,
             borderRadius: BorderRadius.circular(radius),
+            border: Border.all(color: AppColors.grey)
           ),
           child: child,
         ),

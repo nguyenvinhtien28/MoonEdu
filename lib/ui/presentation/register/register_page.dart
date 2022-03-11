@@ -9,8 +9,8 @@ import '../../../const/constants.dart';
 import '../../components/atom/glass_morphism.dart';
 import '../../components/atom/text_area/text_area.dart';
 
-class LoginPage extends HookWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends HookWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class LoginPage extends HookWidget {
                       topLeft: Radius.circular(50),
                       topRight: Radius.circular(50)),
                 ),
-                height: 49.h,
+                height: 58.h,
                 width: 100.w,
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -54,7 +54,20 @@ class LoginPage extends HookWidget {
                         height: kDefaultExThinPadding,
                       ),
                       _GlassMorphismTextArea(
-                        hintText: 'User name...',
+                        hintText: 'Tên đăng nhập',
+                        icon: Icons.email_outlined,
+                        onSaved: (value) {},
+                      ),
+                      const SizedBox(
+                        height: kDefaultPadding,
+                      ),
+                      const TextView("Email",
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                      const SizedBox(
+                        height: kDefaultExThinPadding,
+                      ),
+                      _GlassMorphismTextArea(
+                        hintText: 'Email',
                         icon: Icons.account_circle_outlined,
                         onSaved: (value) {},
                       ),
@@ -75,16 +88,7 @@ class LoginPage extends HookWidget {
                       const SizedBox(
                         height: kDefaultPadding,
                       ),
-                      const TextView(
-                        "Bạn quên mật khẩu?",
-                        fontSize: 14,
-                      ),
-                      const SizedBox(
-                        height: kDefaultPadding,
-                      ),
-                      Button("Đăng nhập", onPressed: () {
-                        router.replaceAll([const HomeRoute()]);
-                      }),
+                      Button("Đăng ký", onPressed: () {}),
                       const SizedBox(
                         height: kDefaultPadding,
                       ),
@@ -93,16 +97,16 @@ class LoginPage extends HookWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const TextView(
-                            "Bạn chưa có tài khoản?",
+                            "Bạn đã có tài khoản?",
                             fontSize: 14,
                             fontColor: AppColors.black,
                           ),
                           GestureDetector(
                             onTap: () {
-                              router.replaceAll([const RegisterRouter()]);
+                              router.replaceAll([const LoginRoute()]);
                             },
                             child: const TextView(
-                              " Đăng ký",
+                              " Đăng nhập",
                               fontSize: 14,
                               fontColor: AppColors.blue,
                               fontWeight: FontWeight.bold,
@@ -116,7 +120,7 @@ class LoginPage extends HookWidget {
               ),
             ),
             Positioned(
-                top: 37.h,
+                top: 27.h,
                 left: 14.w,
                 child: Image.asset("assets/images/logotext.png"))
           ],

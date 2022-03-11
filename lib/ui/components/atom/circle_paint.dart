@@ -43,7 +43,7 @@ class CirclePaint extends HookWidget {
       painter: _CirclePainter(
         Offset(offsetDx, offsetDy),
         radius: radius,
-        topLeftColor: topLeftColor ?? AppColors.pink[900]!,
+        topLeftColor: topLeftColor ?? AppColors.blue[900]!,
         bottomRightColor: bottomRightColor  ?? AppColors.pinkAccent[700]!,
       ),
     );

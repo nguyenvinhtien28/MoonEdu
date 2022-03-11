@@ -14,33 +14,68 @@ class HomePage extends HookConsumerWidget {
     return AutoTabsScaffold(
       routes: const [
         NewsRoute(),
-        VideoRoute(),
+        DiscoverRouter(),
+        TopicRouter(),
+        PracticeRouter(),
+        ProfileRouter(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          onTap: tabsRouter.setActiveIndex,
+          type: BottomNavigationBarType.fixed,
           iconSize: 20,
+          selectedFontSize: 13,
+          unselectedFontSize: 13,
+          currentIndex: tabsRouter.activeIndex,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          onTap: tabsRouter.setActiveIndex,
+          backgroundColor: AppColors.blue,
+          selectedItemColor: AppColors.white,
           items: [
             BottomNavigationBarItem(
-              icon: Assets.svgs.news.svg(
+              icon: Assets.svgs.house.svg(
                 width: 20,
                 color: tabsRouter.current.name == NewsRoute.name
-                    ? kLightThemeData.accentColor
+                    ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),
-              label: 'New',
+              label: 'Trang chủ',
             ),
             BottomNavigationBarItem(
-              icon: Assets.svgs.video.svg(
+              icon: Assets.svgs.discover.svg(
                 width: 20,
-                color: tabsRouter.current.name == VideoRoute.name
-                    ? kLightThemeData.accentColor
+                color: tabsRouter.current.name == DiscoverRouter.name
+                    ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),
-              label: 'Video',
+              label: 'Khám phá',
+            ),
+            BottomNavigationBarItem(
+              icon: Assets.svgs.topic.svg(
+                width: 20,
+                color: tabsRouter.current.name == TopicRouter.name
+                    ? AppColors.white
+                    : kLightThemeData.disabledColor,
+              ),
+              label: 'Bài học',
+            ),
+            BottomNavigationBarItem(
+              icon: Assets.svgs.practice.svg(
+                width: 20,
+                color: tabsRouter.current.name == PracticeRouter.name
+                    ? AppColors.white
+                    : kLightThemeData.disabledColor,
+              ),
+              label: 'Luyện tập',
+            ),
+            BottomNavigationBarItem(
+              icon: Assets.svgs.profile.svg(
+                width: 20,
+                color: tabsRouter.current.name == ProfileRouter.name
+                    ? AppColors.white
+                    : kLightThemeData.disabledColor,
+              ),
+              label: 'Cá nhân',
             ),
           ],
         );
