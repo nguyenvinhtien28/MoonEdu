@@ -13,7 +13,7 @@ class AppColors {
       50: Color(0xFFFFEAEE),
       100: Color(0xFF8FC1F1),
       200: Color(0xFF6A98C7),
-      300: Color(0xFF79A3E7),
+      300: Color(0xFF00AEF0),
       400: Color(0xFF527394),
       500: Color(_pinkPrimaryValue),
       600: Color(0xFF48637D),

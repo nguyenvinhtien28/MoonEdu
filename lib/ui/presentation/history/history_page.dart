@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sakura_base/ui/components/atom/text_view.dart';
+import 'package:flutter_sakura_base/ui/components/atom/botom_navigation_bar/item_botom_navigation_one.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../const/constants.dart';
+import '../../components/atom/text_view.dart';
 import '../../route/router.dart';
 
-class TopicPage extends HookConsumerWidget {
-  const TopicPage({Key? key}) : super(key: key);
+class HistoryPage extends HookConsumerWidget {
+  const HistoryPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref){
     final router = useRouter();
     return Scaffold(
       body: SafeArea(
@@ -25,7 +26,6 @@ class TopicPage extends HookConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    router.push(const SelectionRouter());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),
@@ -40,12 +40,11 @@ class TopicPage extends HookConsumerWidget {
                         color: AppColors.white),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Image.asset(
-                          "assets/images/saohonhtim1.png",
-                          width: 80,
-                          height: 80,
+                        const Padding(
+                          padding: EdgeInsets.all(kDefaultThinPadding),
+                          child: TextView("14-01-2022 \n10/10",fontSize: FontSize.medium,),
                         ),
                         Expanded(
                           child: Column(
@@ -59,7 +58,7 @@ class TopicPage extends HookConsumerWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                               TextView(
-                                "Bài học dùng khi gặp người mới",
+                                "Game 2",
                                 fontSize: FontSize.medium,
                                 fontColor: AppColors.black,
                               )
@@ -78,6 +77,7 @@ class TopicPage extends HookConsumerWidget {
               ],
             )),
       ),
+      bottomNavigationBar: ItemBottomNavigationOne(onTap: router.pop),
     );
   }
 }

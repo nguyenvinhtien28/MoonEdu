@@ -11,14 +11,14 @@ class DiscoverPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Image.asset(
                 "assets/images/bk_ga.jpg",
                 width: 100.w,
-                height: 95.h,
+                height: 90.h,
                 fit: BoxFit.fill,
               ),
               Padding(
@@ -27,7 +27,7 @@ class DiscoverPage extends HookConsumerWidget {
                   children: [
                     Container(
                       width: 100.w,
-                      height: 28.h,
+                      height: 27.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: AppColors.white),
@@ -46,8 +46,8 @@ class DiscoverPage extends HookConsumerWidget {
                           ),
                           Image.asset(
                             "assets/images/reading1.png",
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                           ),
                           const SizedBox(
                             height: kDefaultPadding,
@@ -65,7 +65,7 @@ class DiscoverPage extends HookConsumerWidget {
                     ),
                     Container(
                       width: 100.w,
-                      height: 30.h,
+                      height: 27.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: AppColors.white),
@@ -84,8 +84,8 @@ class DiscoverPage extends HookConsumerWidget {
                           ),
                           Image.asset(
                             "assets/images/studen1.png",
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                           ),
                           const SizedBox(
                             height: kDefaultPadding,
@@ -103,7 +103,7 @@ class DiscoverPage extends HookConsumerWidget {
                     ),
                     Container(
                       width: 100.w,
-                      height: 28.h,
+                      height: 27.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: AppColors.white),
@@ -122,8 +122,8 @@ class DiscoverPage extends HookConsumerWidget {
                           ),
                           Image.asset(
                             "assets/images/book1.png",
-                            width: 120,
-                            height: 120,
+                            width: 110,
+                            height: 110,
                           ),
                           const SizedBox(
                             height: kDefaultPadding,

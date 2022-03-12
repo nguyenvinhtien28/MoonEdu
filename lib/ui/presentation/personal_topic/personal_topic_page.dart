@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sakura_base/ui/components/atom/text_view.dart';
+import 'package:flutter_sakura_base/ui/components/atom/botom_navigation_bar/item_botom_navigation_one.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../const/constants.dart';
+import '../../components/atom/seach_view/item_seach.dart';
+import '../../components/atom/text_view.dart';
 import '../../route/router.dart';
 
-class TopicPage extends HookConsumerWidget {
-  const TopicPage({Key? key}) : super(key: key);
+class PersonalTopicPage extends HookConsumerWidget {
+  const PersonalTopicPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        primary: true,
+        automaticallyImplyLeading: false,
+        title: const ItemSearch(),
+      ),
       body: SafeArea(
         child: Container(
             height: 100.h,
@@ -24,9 +32,7 @@ class TopicPage extends HookConsumerWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    router.push(const SelectionRouter());
-                  },
+                  onTap: () {},
                   child: Container(
                     padding: const EdgeInsets.all(4),
                     margin: const EdgeInsets.only(
@@ -78,6 +84,7 @@ class TopicPage extends HookConsumerWidget {
               ],
             )),
       ),
+      bottomNavigationBar: ItemBottomNavigationOne(onTap: router.pop),
     );
   }
 }
