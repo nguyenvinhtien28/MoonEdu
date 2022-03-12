@@ -17,7 +17,7 @@ class NewsPage extends HookConsumerWidget {
               Image.asset(
                 "assets/images/bk_ga_2.jpg",
                 width: 100.w,
-                height: 95.h,
+                height: 90.h,
                 fit: BoxFit.fill,
               ),
               Padding(
@@ -82,7 +82,7 @@ class NewsPage extends HookConsumerWidget {
                       children: [
                         Container(
                           width: 42.w,
-                          height: 23.h,
+                          height: 22.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: AppColors.blue),
@@ -105,7 +105,7 @@ class NewsPage extends HookConsumerWidget {
                         ),
                         Container(
                           width: 42.w,
-                          height: 23.h,
+                          height: 22.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: AppColors.blue),
@@ -133,7 +133,7 @@ class NewsPage extends HookConsumerWidget {
                     ),
                     Container(
                       width: 100.w,
-                      height: 28.h,
+                      height: 26.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: AppColors.blue),
@@ -150,7 +150,7 @@ class NewsPage extends HookConsumerWidget {
                           const SizedBox(
                             height: kDefaultPadding,
                           ),
-                          Image.asset("assets/images/saohonhtim1.png"),
+                          Image.asset("assets/images/saohonhtim1.png",width: 151,height: 151,),
                         ],
                       ),
                     ),

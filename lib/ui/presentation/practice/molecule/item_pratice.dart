@@ -10,12 +10,12 @@ class ItemPractice extends StatelessWidget {
       : super(key: key);
   final String image;
   final String title;
-  final VoidCallback? onTap;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(kDefaultExThinPadding),
         margin: const EdgeInsets.only(
