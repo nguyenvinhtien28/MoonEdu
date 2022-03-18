@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_sakura_base/core/utils/extension/num.dart';
 
 import '../../../../core/const/constants.dart';
 import '../../../widgets/atom/text_view.dart';

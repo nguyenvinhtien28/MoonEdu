@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_sakura_base/core/utils/extension/num.dart';
+import 'package:flutter_sakura_base/presentation/view_models/login/splash_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../core/const/constants.dart';
 import '../../route/router.dart';
@@ -12,11 +13,9 @@ class SplashPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
+    final splash = ref.watch(splashViewModelProvider(router));
     useEffect(() {
-      Future.delayed(const Duration(seconds: 3), () {
-        router.replace(const LoginRoute());
-      });
-
+      Future.delayed(const Duration(seconds: 3), splash.autoLogin);
       return;
     }, const []);
 

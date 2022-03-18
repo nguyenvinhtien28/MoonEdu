@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:validators/validators.dart';
@@ -317,7 +315,6 @@ class TextArea extends HookWidget {
       labelStyle: const TextStyle().copyWith(fontSize: fontSize),
       hintText: hintText ?? '',
       hintStyle: const TextStyle().copyWith(fontSize: fontSize),
-
       suffixIcon: suffixIcon,
       suffixText: suffixText,
       prefixIcon: prefixIcon,
@@ -465,7 +462,7 @@ class TextArea extends HookWidget {
 
     if (isRequired) {
       if (value.isEmpty) {
-        return Messages.notBlank;
+        return Messages.notEmpty;
       }
     }
 

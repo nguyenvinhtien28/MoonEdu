@@ -1,9 +1,8 @@
-part of exception_handle;
+part of exceptions;
 
 ///
 /// [GenericException]is a generic exception
 ///
-@immutable
 class GenericException implements Exception {
   final ExceptionType code;
   final String message;
@@ -90,12 +89,6 @@ class GenericException implements Exception {
       _message = e.message;
     }
 
-    // GenericException
-    else if (e is GenericException) {
-      _code = e.code;
-      _message = e.message;
-    }
-
     // PlatformException
     else if (e is PlatformException) {
       _code = ExceptionType.fatal;
@@ -111,6 +104,18 @@ class GenericException implements Exception {
     // TimeoutException
     else if (e is TimeoutException) {
       _code = ExceptionType.serverError;
+      _message = e.message;
+    }
+
+    // GenericException
+    else if (e is GenericException) {
+      _code = e.code;
+      _message = e.message;
+    }
+
+    // SecureStorageException
+    else if (e is SecureStorageException) {
+      _code = ExceptionType.fatal;
       _message = e.message;
     }
 

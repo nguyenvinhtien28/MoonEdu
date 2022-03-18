@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_sakura_base/core/utils/extension/num.dart';
+import 'package:flutter_sakura_base/presentation/views/user_info/molecule/item_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../core/const/constants.dart';
 import '../../route/router.dart';
+import '../../view_models/user/user_info_view_model.dart';
 import '../../widgets/atom/botom_navigation_bar/item_botom_navigation_one.dart';
 import '../../widgets/atom/text_view.dart';
 
@@ -13,6 +18,17 @@ class UserInfoPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
+    final userInfoProvider = ref.read(userViewModelProvider(router));
+    final future = useMemoized(userInfoProvider.userInfo);
+    final snapshot = useFuture(future);
+    useEffect(
+      () {
+        final timer = Timer(const Duration(seconds: 1), () =>{});
+        final data = snapshot.data;
+        print(data);
+        return timer.cancel;
+      }, [snapshot.data]
+    );
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -78,66 +94,52 @@ class UserInfoPage extends HookConsumerWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultExThinPadding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const TextView(
-                  "Tên đăng nhập: admin",
-                  fontSize: FontSize.xLarge,
-                  fontColor: AppColors.black,
-                  textAlign: TextAlign.center,
-                  fontWeight: FontWeight.w500,
-                ),
-                Image.asset(
-                  "assets/images/play.png",
-                  width: 40,
-                  height: 40,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultExThinPadding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const TextView(
-                  "Mật khẩu: ********",
-                  fontSize: FontSize.xLarge,
-                  fontColor: AppColors.black,
-                  textAlign: TextAlign.center,
-                  fontWeight: FontWeight.w500,
-                ),
-                Image.asset(
-                  "assets/images/play.png",
-                  width: 40,
-                  height: 40,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultExThinPadding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const TextView(
-                  "Email: moonedu@fpt.edu.vn",
-                  fontSize: FontSize.xLarge,
-                  fontColor: AppColors.black,
-                  textAlign: TextAlign.center,
-                  fontWeight: FontWeight.w500,
-                ),
-                Image.asset(
-                  "assets/images/play.png",
-                  width: 40,
-                  height: 40,
-                ),
-              ],
-            ),
-          ),
+          if (snapshot.hasData)
+            ItemInfo(title: "Tên đăng nhập: ${snapshot.data!.userName}")
+          else if (snapshot.hasError)
+            Text('${snapshot.error}')
+          else
+            const CircularProgressIndicator(),
+          // FutureBuilder<AuthenticationUser>(
+          //   future: future,
+          //   builder: (context, snapshot) {
+          //
+          //     if (snapshot.hasData) {
+          //       return ItemInfo(
+          //           title: "Tên đăng nhập: ${snapshot.data!.userName}");
+          //     } else if (snapshot.hasError) {
+          //       return Text('${snapshot.error}');
+          //     }
+          //     return const CircularProgressIndicator();
+          //   },
+          // ),
+          const ItemInfo(title:  "Mật khẩu: ********",),
+          if (snapshot.hasData)
+            ItemInfo(title: "Email: ${snapshot.data!.email}")
+          else if (snapshot.hasError)
+            Text('${snapshot.error}')
+          else
+            const CircularProgressIndicator(),
+
+          if (snapshot.hasData)
+            ItemInfo(title: "Ngày sinh: ${snapshot.data!.birth}")
+          else if (snapshot.hasError)
+            Text('${snapshot.error}')
+          else
+            const CircularProgressIndicator(),
+
+          if (snapshot.hasData)
+            ItemInfo(title: "Giới tính: ${snapshot.data!.gender}")
+          else if (snapshot.hasError)
+            Text('${snapshot.error}')
+          else
+            const CircularProgressIndicator(),
+          if (snapshot.hasData)
+            ItemInfo(title: "Địa chỉ: ${snapshot.data!.address}")
+          else if (snapshot.hasError)
+            Text('${snapshot.error}')
+          else
+            const CircularProgressIndicator(),
         ],
       )),
       bottomNavigationBar: ItemBottomNavigationOne(onTap: router.pop),

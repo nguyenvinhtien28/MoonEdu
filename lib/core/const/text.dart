@@ -28,4 +28,7 @@ class FontColor {
 
   /// color is 0x424242
   static const Color darkGrey = Color(0xFF424242);
+
+  /// color is 0x424242
+  static const Color red = Color(0xFFB83030);
 }

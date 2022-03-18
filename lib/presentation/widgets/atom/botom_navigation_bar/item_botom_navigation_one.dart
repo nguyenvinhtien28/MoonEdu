@@ -14,21 +14,22 @@ class ItemBottomNavigationOne extends StatelessWidget {
       width: 100.w,
       height: 16.w,
       color: AppColors.blue,
-      child: Row(
-        children: [
-          const SizedBox(width: kDefaultPadding,),
-          Image.asset("assets/images/polygon6.png"),
-          const SizedBox(width: 6,),
-          GestureDetector(
-            onTap: onTap,
-            child: const TextView(
+      child: GestureDetector(
+        onTap: onTap,
+
+        child: Row(
+          children: [
+            const SizedBox(width: kDefaultPadding,),
+            Image.asset("assets/images/polygon6.png"),
+            const SizedBox(width: 6,),
+            const TextView(
               "Trở về",
               fontColor: AppColors.white,
               fontSize: FontSize.xLarge,
               fontWeight: FontWeight.w500,
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
