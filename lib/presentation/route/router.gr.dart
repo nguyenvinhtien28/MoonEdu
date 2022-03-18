@@ -12,6 +12,8 @@
 
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
+import 'package:flutter_sakura_base/presentation/views/user_info/organism/change_password_page.dart' as _i21;
+import 'package:flutter_sakura_base/presentation/views/waiting/waiting_page.dart' as _i20;
 
 import '../views/discover/discover_page.dart' as _i5;
 import '../views/history/history_page.dart' as _i13;
@@ -107,6 +109,14 @@ class AppRouter extends _i6.RootStackRouter {
       return _i6.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i19.IntroducePage());
     },
+    WaitingRouter.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i20.WaitingPage());
+    },
+    ChangePasswordRouter.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i21.ChangePasswordPage());
+    },
   };
 
   @override
@@ -122,6 +132,8 @@ class AppRouter extends _i6.RootStackRouter {
         _i6.RouteConfig(ListVocabularyRouter.name, path: '/list_vocabulary'),
         _i6.RouteConfig(ListStudyVocabularyRouter.name, path: '/list_study_vocabulary'),
         _i6.RouteConfig(IntroduceRouter.name, path: '/introduce'),
+        _i6.RouteConfig(WaitingRouter.name, path: '/waiting'),
+        _i6.RouteConfig(ChangePasswordRouter.name, path: '/user_info/organism'),
         _i6.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i6.RouteConfig(NewsRoute.name, path: 'news', parent: HomeRoute.name),
           _i6.RouteConfig(DiscoverRouter.name, path: 'discover', parent: HomeRoute.name),
@@ -267,4 +279,20 @@ class IntroduceRouter extends _i6.PageRouteInfo<void> {
   const IntroduceRouter() : super(IntroduceRouter.name, path: 'introduce');
 
   static const String name = 'IntroduceRouter';
+}
+
+/// generated route for
+/// [_i20.IntroducePage]
+class WaitingRouter extends _i6.PageRouteInfo<void> {
+  const WaitingRouter() : super(WaitingRouter.name, path: 'introduce');
+
+  static const String name = 'WaitingRouter';
+}
+
+/// generated route for
+/// [_i21.ChangePasswordPage]
+class ChangePasswordRouter extends _i6.PageRouteInfo<void> {
+  const ChangePasswordRouter() : super(ChangePasswordRouter.name, path: 'introduce');
+
+  static const String name = 'ChangePasswordRouter';
 }

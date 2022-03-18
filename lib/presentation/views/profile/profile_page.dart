@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_sakura_base/core/utils/extension/num.dart';
+import 'package:flutter_sakura_base/presentation/view_models/user/profile_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../core/const/constants.dart';
 import '../../route/router.dart';
+import '../../view_models/user/user_info_view_model.dart';
 import '../../widgets/atom/text_view.dart';
 import 'molecule/item_profile.dart';
 
@@ -13,6 +18,15 @@ class ProfilePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
+    final profileProvider = ref.watch(profileViewModelProvider(router));
+    final userInfoProvider = ref.read(userViewModelProvider(router));
+    final future = useMemoized(userInfoProvider.userInfo);
+    final snapshot = useFuture(future);
+    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random _rnd = Random();
+
+    String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -46,14 +60,21 @@ class ProfilePage extends HookConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
-                      const TextView(
-                        "Moon Edu",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                        fontColor: AppColors.white,
-                      ),
-                      const  SizedBox(
+                    children: [
+                      if (snapshot.hasData)
+                        TextView(
+                          snapshot.data!.name == null
+                              ? getRandomString(10)
+                              : snapshot.data!.name.toString(),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                          fontColor: AppColors.white,
+                        )
+                      else if (snapshot.hasError)
+                        Text('${snapshot.error}')
+                      else
+                        const CircularProgressIndicator(),
+                      const SizedBox(
                         height: 3,
                       ),
                       GestureDetector(
@@ -82,23 +103,25 @@ class ProfilePage extends HookConsumerWidget {
                 router.push(const PersonalStudyTopicRouter());
               },
             ),
-             ItemProfile(
+            ItemProfile(
               image: "assets/images/danhsachtuvung1.png",
               title: "Từ vựng của bạn",
               onTap: () => router.push(const ListStudyVocabularyRouter()),
             ),
-            const ItemProfile(
+            ItemProfile(
               image: "assets/images/call.png",
               title: "Liên hệ với chúng tôi",
+              onTap: () => router.push(const WaitingRouter()),
             ),
-             ItemProfile(
+            ItemProfile(
               image: "assets/images/text11.png",
               title: "Giới thiệu",
               onTap: () => router.push(const IntroduceRouter()),
             ),
-            const ItemProfile(
+            ItemProfile(
               image: "assets/images/pngegg1.png",
               title: "Đăng xuất",
+              onTap: profileProvider.logOut,
             ),
           ],
         ),

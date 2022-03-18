@@ -21,7 +21,7 @@ class ApiClient {
 
   static BaseOptions get _baseOptions {
     return BaseOptions(
-      baseUrl: BasePathConfig.instance.basePath,
+      baseUrl: ApiPath.api,
       contentType: 'application/json',
       connectTimeout: _kConnectTimeout.inMilliseconds,
       sendTimeout: _kSendTimeout.inMilliseconds,
@@ -30,9 +30,14 @@ class ApiClient {
   }
 
   static InterceptorsWrapper get _interceptorsWrapper {
+    final secureHelper = SecureStorageHelper();
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
-        options.headers.addAll(await userAgentClientHintsHeader());
+        final token = await secureHelper.read('token');
+        final requestHeaders = {
+          'token' : token,
+        };
+        options.headers.addAll(requestHeaders);
         handler.next(options);
       },
     );
@@ -49,16 +54,16 @@ class ApiClient {
     );
   }
 
-  Future<Response?> invokeAPI(
-    String path, {
-    required ApiMethod apiMethod,
-    Object? bodyData,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) {
+  Future<Response<Map<String, dynamic>>> invokeAPI(
+      String path, {
+        required ApiMethod apiMethod,
+        Object? bodyData,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) {
     try {
       switch (apiMethod) {
         case ApiMethod.get:
@@ -132,14 +137,14 @@ class ApiClient {
     }
   }
 
-  Future<Response?> _get(
-    String path, {
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final response = await _dio.get(
+  Future<Response<Map<String, dynamic>>> _get(
+      String path, {
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    final response = await _dio.get<Map<String, dynamic>>(
       path,
       queryParameters: queryParameters,
       options: options?..receiveTimeout,
@@ -155,22 +160,25 @@ class ApiClient {
     }
 
     if (response.data == null && response.statusCode == HttpStatus.noContent) {
-      return null;
+      throw ApiException(
+        response.statusCode ?? _unknownStatusCode,
+        response.statusMessage,
+      );
     }
 
     return response;
   }
 
-  Future<Response?> _post(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final response = await _dio.post(
+  Future<Response<Map<String, dynamic>>> _post(
+      String path, {
+        Object? data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    final response = await _dio.post<Map<String, dynamic>>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -188,22 +196,25 @@ class ApiClient {
     }
 
     if (response.data == null && response.statusCode == HttpStatus.noContent) {
-      return null;
+      throw ApiException(
+        response.statusCode ?? _unknownStatusCode,
+        response.statusMessage,
+      );
     }
 
     return response;
   }
 
-  Future<Response?> _patch(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final response = await _dio.patch(
+  Future<Response<Map<String, dynamic>>> _patch(
+      String path, {
+        Object? data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    final response = await _dio.patch<Map<String, dynamic>>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -221,20 +232,23 @@ class ApiClient {
     }
 
     if (response.data == null && response.statusCode == HttpStatus.noContent) {
-      return null;
+      throw ApiException(
+        response.statusCode ?? _unknownStatusCode,
+        response.statusMessage,
+      );
     }
 
     return response;
   }
 
-  Future<Response?> _delete(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-  }) async {
-    final response = await _dio.delete(
+  Future<Response<Map<String, dynamic>>> _delete(
+      String path, {
+        Object? data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+      }) async {
+    final response = await _dio.delete<Map<String, dynamic>>(
       path,
       data: data,
       queryParameters: queryParameters,
@@ -250,7 +264,10 @@ class ApiClient {
     }
 
     if (response.data == null && response.statusCode == HttpStatus.noContent) {
-      return null;
+      throw ApiException(
+        response.statusCode ?? _unknownStatusCode,
+        response.statusMessage,
+      );
     }
 
     return response;

@@ -1,42 +1,14 @@
-library exception_handle;
-
-import 'dart:async';
-import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../presentation/route/router.dart';
-import '../api/api.dart';
-
-part 'generic_exception.dart';
-
-///
-/// [ExceptionType] is an exception definition
-///
-enum ExceptionType {
-  warn, // no designation
-  alert, // alert (send a message to the user)
-  forbidden, // authority error
-  notFoundError, // couldn't find it.
-  validationError, // validation error
-  unauthorizedError, // authentication error
-  serverError, // server error
-  fatal, // fatal
-  forcedUpdate, // Forced version upgrades are mandatory.
-}
+part of exceptions;
 
 /// Release judgment (for debugging handling only)
 const isRelease = bool.fromEnvironment('dart.vm.product');
 
-final exceptionHandleProvider = Provider(
-  (ref) => ExceptionHandle(ref.read),
+final exceptionHandlerProvider = Provider(
+  (ref) => ExceptionHandler(ref.read),
 );
 
-class ExceptionHandle {
-  const ExceptionHandle(this.read) : super();
+class ExceptionHandler {
+  const ExceptionHandler(this.read) : super();
 
   final Reader read;
 
