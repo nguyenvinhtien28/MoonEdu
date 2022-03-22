@@ -3,6 +3,7 @@ import 'package:flutter_sakura_base/presentation/route/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/services/secure_storage/secure_storage.dart';
+import '../../../core/services/secure_storage/storage_parh.dart';
 import '../view_model.dart';
 
 final profileViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -21,7 +22,7 @@ class ProfileViewModel extends ViewModel {
 
   Future<void> logOut() async {
     try {
-      await _storage.delete('token');
+      await _storage.delete(StoragePath.token);
       router.replace(const LoginRoute());
     } catch (e) {
       throw Exception("init profileProvider $e");
