@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sakura_base/presentation/view_models/vocabulary/vocabulary_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/const/constants.dart';
@@ -13,6 +14,7 @@ class ListVocabularyPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
+    final vocabularyProvider =ref.read(vocabularyViewModel(router));
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -64,10 +66,15 @@ class ListVocabularyPage extends HookConsumerWidget {
                             ],
                           ),
                         ),
-                        Image.asset(
-                          "assets/images/loa1.png",
-                          width: 50,
-                          height: 50,
+                        GestureDetector(
+                          onTap: () {
+                            vocabularyProvider.readingVocabulary("await");
+                          },
+                          child: Image.asset(
+                            "assets/images/loa1.png",
+                            width: 50,
+                            height: 50,
+                          ),
                         ),
                       ],
                     ),

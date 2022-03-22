@@ -47,6 +47,8 @@ dependencies:
   video_player: ^2.2.19
   shimmer: ^2.0.0
   flutter_tts: ^3.3.3
+  flutter_picker: ^2.0.3
+  flutter_slidable: ^1.2.0
 
 dev_dependencies:
   flutter_test:

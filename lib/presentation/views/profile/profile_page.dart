@@ -22,11 +22,13 @@ class ProfilePage extends HookConsumerWidget {
     final userInfoProvider = ref.read(userViewModelProvider(router));
     final future = useMemoized(userInfoProvider.userInfo);
     final snapshot = useFuture(future);
-    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    const _chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     Random _rnd = Random();
 
-    String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+    String getRandomString(int length) =>
+        String.fromCharCodes(Iterable.generate(
+            length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -63,9 +65,7 @@ class ProfilePage extends HookConsumerWidget {
                     children: [
                       if (snapshot.hasData)
                         TextView(
-                          snapshot.data!.name == null
-                              ? getRandomString(10)
-                              : snapshot.data!.name.toString(),
+                          snapshot.data!.name.toString(),
                           fontWeight: FontWeight.bold,
                           fontSize: 28,
                           fontColor: AppColors.white,

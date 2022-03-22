@@ -6,13 +6,19 @@ class Messages {
   Messages._();
 
   static const String appName = 'Sakura Base';
+  static const String add = 'Thêm';
   static const String errorMaxLengthInput = 'Please enter within 255 characters';
   static const String notBlank = 'required';
   static const String notEmpty = 'Không được để trống';
   static const String userName = 'Tên đăng nhập';
+  static const String name = 'Tên';
+  static const String successful = 'Thành công';
   static const String password = 'Mật khẩu';
   static const String newPassword = 'Mật khẩu mới';
+  static const String birthday = 'Ngày sinh';
+  static const String gender = 'Giới tính';
   static const String oldPassword = 'Mật khẩu cũ';
+  static const String address = 'Địa chỉ';
   static const String confirmPassword = 'Xác nhận mật khẩu';
   static const String login = 'Đăng nhập';
   static const String email = 'Email';

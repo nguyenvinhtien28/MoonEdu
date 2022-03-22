@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_sakura_base/core/services/secure_storage/storage_parh.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/exceptions/exceptions.dart';
@@ -51,8 +52,10 @@ class LoginViewModel extends ViewModel {
       final params = LoginParam(username: username, password: password);
 
       final auth = await loginUseCase.call(params: params);
-      await _storage.write('token', '${auth.token}');
+      await _storage.write(StoragePath.token, '${auth.token}');
+      await _storage.write(StoragePath.id, '${auth.id}');
       debugPrint(auth.token);
+      debugPrint(auth.id.toString());
       router.replace(const HomeRoute());
     } catch (e) {
       notificationLogin = "Sai tên đăng nhập hoặc mật khẩu";

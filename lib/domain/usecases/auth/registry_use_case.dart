@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 import '../../../data/repositories/auth_repository_impl.dart';
 import '../../entities/authentication_register.dart';
 import '../../entities/register_request.dart';
@@ -25,14 +24,14 @@ class RegistryUseCase
   Future<AuthenticationRegister> call({
     required RegistryParam params,
   }) async {
-    return await authRepository.register(
-        RegistryRequest(
-       params.userName,
-     params.email,
+    return await authRepository.register(RegistryRequest(
+      params.userName,
+      params.email,
       params.password,
     ));
   }
 }
+
 class RegistryParam extends Equatable {
   const RegistryParam({
     required this.userName,
