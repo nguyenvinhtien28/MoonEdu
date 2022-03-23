@@ -102,10 +102,7 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Tên: ${userInfoProvider.name.isEmpty ?
-                    snapshot.data!.name :
-                    userInfoProvider.name
-                    }",
+                    "Tên: ${userInfoProvider.name.isEmpty ? snapshot.data!.name : userInfoProvider.name}",
                 onTap: () => showChangeNameDialog(
                   context,
                   userInfoProvider.name.toString().isEmpty
@@ -159,9 +156,7 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Ngày sinh: ${userInfoProvider.birth.isEmpty ?
-                    snapshot.data!.birth :
-                    userInfoProvider.birth}",
+                    "Ngày sinh: ${userInfoProvider.birth.isEmpty ? snapshot.data!.birth : userInfoProvider.birth}",
                 onTap: () {
                   final Picker picker = Picker(
                     adapter: DateTimePickerAdapter(
@@ -173,7 +168,18 @@ class UserInfoPage extends HookConsumerWidget {
                       yearBegin: 1950,
                       yearEnd: 2022,
                     ),
-                    title: const Text("Select DateTime"),
+
+                    title: const TextView(
+                      "Ngày sinh",
+                      fontSize: FontSize.xLarge,
+                      fontColor: AppColors.black,
+                      textAlign: TextAlign.left,
+                      fontWeight: FontWeight.w500,
+                      maxLines: 2,
+                    ),
+                    confirmText: "Xác nhận",
+                    cancelText: "Huỷ",
+                    hideHeader: true,
                     onConfirm: (Picker picker, List value) {
                       userInfoProvider.birth = picker.adapter.text
                           .substring(0, 10)
@@ -194,16 +200,27 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Giới tính: ${userInfoProvider.gender.isEmpty ?
-                    snapshot.data!.gender : userInfoProvider.gender}",
+                    "Giới tính: ${userInfoProvider.gender.isEmpty ? snapshot.data!.gender : userInfoProvider.gender}",
                 onTap: () {
                   final Picker picker = Picker(
                       adapter: PickerDataAdapter<String>(
                         pickerdata: const JsonDecoder().convert(pickerData),
                       ),
-                      changeToFirst: true,
+                      changeToFirst: false,
                       textAlign: TextAlign.left,
+                      hideHeader: true,
+                      title: const TextView(
+                        "Giới Tính",
+                        fontSize: FontSize.xLarge,
+                        fontColor: AppColors.black,
+                        textAlign: TextAlign.left,
+                        fontWeight: FontWeight.w500,
+                        maxLines: 2,
+                      ),
+                      height: 25.w,
                       columnPadding: const EdgeInsets.all(8.0),
+                      confirmText: "Xác nhận",
+                      cancelText: "Huỷ",
                       onConfirm: (Picker picker, List value) {
                         print(value.last.toString());
                         print(picker.getSelectedValues().join(""));
