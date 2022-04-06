@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
@@ -18,17 +16,11 @@ class ProfilePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final profileProvider = ref.watch(profileViewModelProvider(router));
-    final userInfoProvider = ref.read(userViewModelProvider(router));
+    final profileProvider = ref.watch(profileViewModelProvider);
+    final userInfoProvider = ref.read(userViewModelProvider);
     final future = useMemoized(userInfoProvider.userInfo);
     final snapshot = useFuture(future);
-    const _chars =
-        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random _rnd = Random();
 
-    String getRandomString(int length) =>
-        String.fromCharCodes(Iterable.generate(
-            length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -41,7 +33,7 @@ class ProfilePage extends HookConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  Container(  
                     width: 20.w,
                     height: 20.w,
                     decoration: BoxDecoration(
@@ -79,7 +71,7 @@ class ProfilePage extends HookConsumerWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          router.push(const UserInfoRouter());
+                          router.push(const UserInfoRoute());
                         },
                         child: const TextView(
                           "Xem thông tin của bạn",
@@ -100,23 +92,23 @@ class ProfilePage extends HookConsumerWidget {
               image: "assets/images/book1.png",
               title: "Chủ đề học của bạn",
               onTap: () {
-                router.push(const PersonalStudyTopicRouter());
+                router.push(const PersonalStudyTopicRoute());
               },
             ),
             ItemProfile(
               image: "assets/images/danhsachtuvung1.png",
               title: "Từ vựng của bạn",
-              onTap: () => router.push(const ListStudyVocabularyRouter()),
+              onTap: () => router.push(const ListStudyVocabularyRoute()),
             ),
             ItemProfile(
               image: "assets/images/call.png",
               title: "Liên hệ với chúng tôi",
-              onTap: () => router.push(const WaitingRouter()),
+              onTap: () => router.push(const WaitingRoute()),
             ),
             ItemProfile(
               image: "assets/images/text11.png",
               title: "Giới thiệu",
-              onTap: () => router.push(const IntroduceRouter()),
+              onTap: () => router.push(const IntroduceRoute()),
             ),
             ItemProfile(
               image: "assets/images/pngegg1.png",

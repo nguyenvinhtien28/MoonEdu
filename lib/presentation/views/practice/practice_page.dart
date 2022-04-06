@@ -32,13 +32,13 @@ class PracticePage extends HookConsumerWidget {
                       ItemPractice(
                         image: "assets/images/book1.png",
                         title: "Danh sách chủ đề",
-                        onTap: () => router.push(const PersonalTopicRouter()),
+                        onTap: () => router.push(const PersonalTopicRoute()),
                       ),
                       ItemPractice(
                         image: "assets/images/book1.png",
                         title: "Danh sách chủ đề cá nhân",
                         onTap: () =>
-                            router.push(const PersonalStudyTopicRouter()),
+                            router.push(const PersonalStudyTopicRoute()),
                       )
                     ],
                   ),
@@ -49,14 +49,14 @@ class PracticePage extends HookConsumerWidget {
                         image: "assets/images/danhsachtuvung1.png",
                         title: "Danh sách từ vựng",
                         onTap: () {
-                          router.push(const ListVocabularyRouter());
+                          router.push(const ListVocabularyRoute());
                         },
                       ),
                       ItemPractice(
                         image: "assets/images/danhsachtuvung1.png",
                         title: "Danh sách từ vựng cá nhân",
                         onTap: () {
-                          router.push(const ListStudyVocabularyRouter());
+                          router.push(const ListStudyVocabularyRoute());
                         },
                       )
                     ],
@@ -64,7 +64,7 @@ class PracticePage extends HookConsumerWidget {
                   ItemPractice(
                     image: "assets/images/timer1.png",
                     title: "Lịch sử học",
-                    onTap: () => router.push(const HistoryRouter()),
+                    onTap: () => router.push(const HistoryRoute()),
                   ),
                 ],
               ),

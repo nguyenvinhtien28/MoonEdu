@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_sakura_base/presentation/route/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -7,16 +6,14 @@ import '../../../core/services/secure_storage/storage_parh.dart';
 import '../view_model.dart';
 
 final profileViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<ProfileViewModel, StackRouter>((ref, router) {
-  return ProfileViewModel(ref.read, router);
+   <ProfileViewModel>((ref) {
+  return ProfileViewModel(ref.read);
 });
 
 class ProfileViewModel extends ViewModel {
-  ProfileViewModel(this.read, this.router) : super(read);
+  ProfileViewModel(this.read) : super(read);
 
   final Reader read;
-
-  final StackRouter router;
 
   SecureStorageHelper get _storage => read(secureStorageHelperProvider);
 

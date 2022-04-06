@@ -49,6 +49,7 @@ dependencies:
   flutter_tts: ^3.3.3
   flutter_picker: ^2.0.3
   flutter_slidable: ^1.2.0
+  percent_indicator: ^4.0.0
 
 dev_dependencies:
   flutter_test:

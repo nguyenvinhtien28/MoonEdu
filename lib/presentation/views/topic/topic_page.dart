@@ -25,7 +25,7 @@ class TopicPage extends HookConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    router.push(const SelectionRouter());
+                    router.push(const SelectionRoute());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/const/constants.dart';
 
-import '../../route/router.gr.dart';
+import '../../route/router.dart';
 import '../../widgets/atom/assets_gen/assets.gen.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -14,10 +14,10 @@ class HomePage extends HookConsumerWidget {
     return AutoTabsScaffold(
       routes: const [
         NewsRoute(),
-        DiscoverRouter(),
-        TopicRouter(),
-        PracticeRouter(),
-        ProfileRouter(),
+        DiscoverRoute(),
+        TopicRoute(),
+        PracticeRoute(),
+        ProfileRoute(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
@@ -44,7 +44,7 @@ class HomePage extends HookConsumerWidget {
             BottomNavigationBarItem(
               icon: Assets.svgs.discover.svg(
                 width: 20,
-                color: tabsRouter.current.name == DiscoverRouter.name
+                color: tabsRouter.current.name == DiscoverRoute.name
                     ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),
@@ -53,7 +53,7 @@ class HomePage extends HookConsumerWidget {
             BottomNavigationBarItem(
               icon: Assets.svgs.topic.svg(
                 width: 20,
-                color: tabsRouter.current.name == TopicRouter.name
+                color: tabsRouter.current.name == TopicRoute.name
                     ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),
@@ -62,7 +62,7 @@ class HomePage extends HookConsumerWidget {
             BottomNavigationBarItem(
               icon: Assets.svgs.practice.svg(
                 width: 20,
-                color: tabsRouter.current.name == PracticeRouter.name
+                color: tabsRouter.current.name == PracticeRoute.name
                     ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),
@@ -71,7 +71,7 @@ class HomePage extends HookConsumerWidget {
             BottomNavigationBarItem(
               icon: Assets.svgs.profile.svg(
                 width: 20,
-                color: tabsRouter.current.name == ProfileRouter.name
+                color: tabsRouter.current.name == ProfileRoute.name
                     ? AppColors.white
                     : kLightThemeData.disabledColor,
               ),

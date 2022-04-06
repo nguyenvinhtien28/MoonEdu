@@ -4,8 +4,6 @@ import 'package:flutter_sakura_base/core/const/constants.dart';
 import 'package:flutter_sakura_base/presentation/view_models/user/user_info_view_model.dart';
 import 'package:flutter_sakura_base/presentation/widgets/atom/dialog/input_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../route/router.dart';
 import '../../../widgets/atom/snackbar/snackbar.dart';
 
 Future<String?> showChangeNameDialog(
@@ -28,8 +26,7 @@ class ChangeNameDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
-    final userInfoProvider = ref.watch(userViewModelProvider(router));
+    final userInfoProvider = ref.watch(userViewModelProvider);
     final textController = TextEditingController();
     useEffect(() {
       textController.text = text;

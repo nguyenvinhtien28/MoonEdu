@@ -10,289 +10,288 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
-import 'package:flutter_sakura_base/presentation/views/user_info/organism/change_password_page.dart' as _i21;
-import 'package:flutter_sakura_base/presentation/views/waiting/waiting_page.dart' as _i20;
+part of 'router.dart';
 
-import '../views/discover/discover_page.dart' as _i5;
-import '../views/history/history_page.dart' as _i13;
-import '../views/home/home_page.dart' as _i3;
-import '../views/introduce/introduce_page.dart' as _i19;
-import '../views/list_study_vocabulary/list_study_vocabulary_page.dart' as _i18;
-import '../views/list_vocabulary/list_vocabulary_page.dart' as _i17;
-import '../views/login/login_page.dart'as _i2;
-import '../views/news/news_page.dart' as _i4;
-import '../views/personal_study_topics/personal_study_topics_page.dart' as _i14;
-import '../views/personal_topic/personal_topic_page.dart' as _i15;
-import '../views/practice/practice_page.dart' as _i10;
-import '../views/profile/profile_page.dart' as _i11;
-import '../views/register/register_page.dart' as _i8;
-import '../views/selection/selection_page.dart' as _i12;
-import '../views/splash/splash_page.dart' as _i1;
-import '../views/topic/topic_page.dart' as _i9;
-import '../views/user_info/user_info_page.dart' as _i16;
-
-
-
-class AppRouter extends _i6.RootStackRouter {
-  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+class _$AppRouter extends RootStackRouter {
+  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
+  final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const  _i1.SplashPage());
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const SplashPage());
     },
     LoginRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i2.LoginPage());
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const LoginPage());
     },
-    RegisterRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i8.RegisterPage());
+    RegisterRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const RegisterPage());
+    },
+    SelectionRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const SelectionPage());
+    },
+    ChangePasswordRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ChangePasswordPage());
+    },
+    WaitingRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const WaitingPage());
+    },
+    QuizRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const QuizPage());
+    },
+    HistoryRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const HistoryPage());
+    },
+    PersonalStudyTopicRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const PersonalStudyTopicPage());
+    },
+    PersonalTopicRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const PersonalTopicPage());
+    },
+    UserInfoRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const UserInfoPage());
+    },
+    ListVocabularyRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ListVocabularyPage());
+    },
+    ListStudyVocabularyRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ListStudyVocabularyPage());
+    },
+    IntroduceRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const IntroducePage());
     },
     HomeRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i3.HomePage());
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const HomePage());
     },
     NewsRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i4.NewsPage());
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const NewsPage());
     },
-    DiscoverRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i5.DiscoverPage());
-    }  ,
-    TopicRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i9.TopicPage());
+    DiscoverRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const DiscoverPage());
     },
-    PracticeRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i10.PracticePage());
+    TopicRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const TopicPage());
     },
-    ProfileRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i11.ProfilePage());
+    PracticeRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const PracticePage());
     },
-    SelectionRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i12.SelectionPage());
-    },
-    HistoryRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i13.HistoryPage());
-    },
-    PersonalStudyTopicRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i14.PersonalStudyTopicPage());
-    },
-    PersonalTopicRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i15.PersonalTopicPage());
-    },
-    UserInfoRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i16.UserInfoPage());
-    },
-    ListVocabularyRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i17.ListVocabularyPage());
-    },
-    ListStudyVocabularyRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i18.ListStudyVocabularyPage());
-    },
-    IntroduceRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i19.IntroducePage());
-    },
-    WaitingRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i20.WaitingPage());
-    },
-    ChangePasswordRouter.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i21.ChangePasswordPage());
-    },
+    ProfileRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ProfilePage());
+    }
   };
 
   @override
-  List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(SplashRoute.name, path: '/'),
-        _i6.RouteConfig(LoginRoute.name, path: '/login'),
-        _i6.RouteConfig(RegisterRouter.name, path: '/register'),
-        _i6.RouteConfig(SelectionRouter.name, path: '/selection'),
-        _i6.RouteConfig(HistoryRouter.name, path: '/history'),
-        _i6.RouteConfig(PersonalStudyTopicRouter.name, path: '/personal_study_topic'),
-        _i6.RouteConfig(PersonalTopicRouter.name, path: '/personal_topic'),
-        _i6.RouteConfig(UserInfoRouter.name, path: '/user_info'),
-        _i6.RouteConfig(ListVocabularyRouter.name, path: '/list_vocabulary'),
-        _i6.RouteConfig(ListStudyVocabularyRouter.name, path: '/list_study_vocabulary'),
-        _i6.RouteConfig(IntroduceRouter.name, path: '/introduce'),
-        _i6.RouteConfig(WaitingRouter.name, path: '/waiting'),
-        _i6.RouteConfig(ChangePasswordRouter.name, path: '/user_info/organism'),
-        _i6.RouteConfig(HomeRoute.name, path: '/home', children: [
-          _i6.RouteConfig(NewsRoute.name, path: 'news', parent: HomeRoute.name),
-          _i6.RouteConfig(DiscoverRouter.name, path: 'discover', parent: HomeRoute.name),
-          _i6.RouteConfig(TopicRouter.name, path: 'topic', parent: TopicRouter.name),
-          _i6.RouteConfig(PracticeRouter.name, path: 'practice', parent: PracticeRouter.name),
-          _i6.RouteConfig(ProfileRouter.name, path: 'profile', parent: ProfileRouter.name),
+  List<RouteConfig> get routes => [
+        RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(LoginRoute.name, path: '/login'),
+        RouteConfig(RegisterRoute.name, path: '/register'),
+        RouteConfig(SelectionRoute.name, path: '/selection'),
+        RouteConfig(ChangePasswordRoute.name, path: '/change_password'),
+        RouteConfig(WaitingRoute.name, path: '/waiting'),
+        RouteConfig(QuizRoute.name, path: '/quiz'),
+        RouteConfig(HistoryRoute.name, path: '/history'),
+        RouteConfig(PersonalStudyTopicRoute.name,
+            path: '/personal_study_topics'),
+        RouteConfig(PersonalTopicRoute.name, path: '/personal_topics'),
+        RouteConfig(UserInfoRoute.name, path: '/user_info'),
+        RouteConfig(ListVocabularyRoute.name, path: '/list_vocabulary'),
+        RouteConfig(ListStudyVocabularyRoute.name,
+            path: '/list_study_vocabulary'),
+        RouteConfig(IntroduceRoute.name, path: '/introduce'),
+        RouteConfig(HomeRoute.name, path: '/home', children: [
+          RouteConfig(NewsRoute.name, path: 'news', parent: HomeRoute.name),
+          RouteConfig(DiscoverRoute.name,
+              path: 'discover', parent: HomeRoute.name),
+          RouteConfig(TopicRoute.name, path: 'topic', parent: HomeRoute.name),
+          RouteConfig(PracticeRoute.name,
+              path: 'practice', parent: HomeRoute.name),
+          RouteConfig(ProfileRoute.name,
+              path: 'profile', parent: HomeRoute.name)
         ])
       ];
 }
 
 /// generated route for
-/// [_i1.SplashPage]
-class SplashRoute extends _i6.PageRouteInfo<void> {
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
 
 /// generated route for
-/// [_i2.LoginPage]
-class LoginRoute extends _i6.PageRouteInfo<void> {
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/login');
 
   static const String name = 'LoginRoute';
 }
 
 /// generated route for
-/// [_i8.Register]
-class RegisterRouter extends _i6.PageRouteInfo<void> {
-  const RegisterRouter() : super(RegisterRouter.name, path: '/register');
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute() : super(RegisterRoute.name, path: '/register');
 
-  static const String name = 'RegisterRouter';
+  static const String name = 'RegisterRoute';
 }
 
 /// generated route for
-/// [_i3.HomePage]
-class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute({List<_i6.PageRouteInfo>? children})
+/// [SelectionPage]
+class SelectionRoute extends PageRouteInfo<void> {
+  const SelectionRoute() : super(SelectionRoute.name, path: '/selection');
+
+  static const String name = 'SelectionRoute';
+}
+
+/// generated route for
+/// [ChangePasswordPage]
+class ChangePasswordRoute extends PageRouteInfo<void> {
+  const ChangePasswordRoute()
+      : super(ChangePasswordRoute.name, path: '/change_password');
+
+  static const String name = 'ChangePasswordRoute';
+}
+
+/// generated route for
+/// [WaitingPage]
+class WaitingRoute extends PageRouteInfo<void> {
+  const WaitingRoute() : super(WaitingRoute.name, path: '/waiting');
+
+  static const String name = 'WaitingRoute';
+}
+
+/// generated route for
+/// [QuizPage]
+class QuizRoute extends PageRouteInfo<void> {
+  const QuizRoute() : super(QuizRoute.name, path: '/quiz');
+
+  static const String name = 'QuizRoute';
+}
+
+/// generated route for
+/// [HistoryPage]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute() : super(HistoryRoute.name, path: '/history');
+
+  static const String name = 'HistoryRoute';
+}
+
+/// generated route for
+/// [PersonalStudyTopicPage]
+class PersonalStudyTopicRoute extends PageRouteInfo<void> {
+  const PersonalStudyTopicRoute()
+      : super(PersonalStudyTopicRoute.name, path: '/personal_study_topics');
+
+  static const String name = 'PersonalStudyTopicRoute';
+}
+
+/// generated route for
+/// [PersonalTopicPage]
+class PersonalTopicRoute extends PageRouteInfo<void> {
+  const PersonalTopicRoute()
+      : super(PersonalTopicRoute.name, path: '/personal_topics');
+
+  static const String name = 'PersonalTopicRoute';
+}
+
+/// generated route for
+/// [UserInfoPage]
+class UserInfoRoute extends PageRouteInfo<void> {
+  const UserInfoRoute() : super(UserInfoRoute.name, path: '/user_info');
+
+  static const String name = 'UserInfoRoute';
+}
+
+/// generated route for
+/// [ListVocabularyPage]
+class ListVocabularyRoute extends PageRouteInfo<void> {
+  const ListVocabularyRoute()
+      : super(ListVocabularyRoute.name, path: '/list_vocabulary');
+
+  static const String name = 'ListVocabularyRoute';
+}
+
+/// generated route for
+/// [ListStudyVocabularyPage]
+class ListStudyVocabularyRoute extends PageRouteInfo<void> {
+  const ListStudyVocabularyRoute()
+      : super(ListStudyVocabularyRoute.name, path: '/list_study_vocabulary');
+
+  static const String name = 'ListStudyVocabularyRoute';
+}
+
+/// generated route for
+/// [IntroducePage]
+class IntroduceRoute extends PageRouteInfo<void> {
+  const IntroduceRoute() : super(IntroduceRoute.name, path: '/introduce');
+
+  static const String name = 'IntroduceRoute';
+}
+
+/// generated route for
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
       : super(HomeRoute.name, path: '/home', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
 /// generated route for
-/// [_i4.NewsPage]
-class NewsRoute extends _i6.PageRouteInfo<void> {
+/// [NewsPage]
+class NewsRoute extends PageRouteInfo<void> {
   const NewsRoute() : super(NewsRoute.name, path: 'news');
 
   static const String name = 'NewsRoute';
 }
 
 /// generated route for
-/// [_i5.VideoPage]
-class DiscoverRouter extends _i6.PageRouteInfo<void> {
-  const DiscoverRouter() : super(DiscoverRouter.name, path: 'discover');
+/// [DiscoverPage]
+class DiscoverRoute extends PageRouteInfo<void> {
+  const DiscoverRoute() : super(DiscoverRoute.name, path: 'discover');
 
-  static const String name = 'DiscoverRouter';
+  static const String name = 'DiscoverRoute';
 }
 
 /// generated route for
-/// [_i9.TopicPage]
-class TopicRouter extends _i6.PageRouteInfo<void> {
-  const TopicRouter() : super(TopicRouter.name, path: 'topic');
+/// [TopicPage]
+class TopicRoute extends PageRouteInfo<void> {
+  const TopicRoute() : super(TopicRoute.name, path: 'topic');
 
-  static const String name = 'TopicRouter';
+  static const String name = 'TopicRoute';
 }
 
 /// generated route for
-/// [_i10.TopicPage]
-class PracticeRouter extends _i6.PageRouteInfo<void> {
-  const PracticeRouter() : super(PracticeRouter.name, path: 'practice');
+/// [PracticePage]
+class PracticeRoute extends PageRouteInfo<void> {
+  const PracticeRoute() : super(PracticeRoute.name, path: 'practice');
 
-  static const String name = 'PracticeRouter';
+  static const String name = 'PracticeRoute';
 }
 
 /// generated route for
-/// [_i11.TopicPage]
-class ProfileRouter extends _i6.PageRouteInfo<void> {
-  const ProfileRouter() : super(ProfileRouter.name, path: 'profile');
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
 
-  static const String name = 'ProfileRouter';
-}
-
-/// generated route for
-/// [_i12.SelectionPage]
-class SelectionRouter extends _i6.PageRouteInfo<void> {
-  const SelectionRouter() : super(SelectionRouter.name, path: 'selection');
-
-  static const String name = 'SelectionRouter';
-}
-
-/// generated route for
-/// [_i13.HistoryPage]
-class HistoryRouter extends _i6.PageRouteInfo<void> {
-  const HistoryRouter() : super(HistoryRouter.name, path: 'history');
-
-  static const String name = 'HistoryRouter';
-}
-
-/// generated route for
-/// [_i14.PersonalStudyTopicPage]
-class PersonalStudyTopicRouter extends _i6.PageRouteInfo<void> {
-  const PersonalStudyTopicRouter() : super(PersonalStudyTopicRouter.name, path: 'personal_study_topics');
-
-  static const String name = 'PersonalStudyTopicRouter';
-}
-
-/// generated route for
-/// [_i15.PersonalTopicPage]
-class PersonalTopicRouter extends _i6.PageRouteInfo<void> {
-  const PersonalTopicRouter() : super(PersonalTopicRouter.name, path: 'personal_topics');
-
-  static const String name = 'PersonalTopicRouter';
-}
-
-/// generated route for
-/// [_i16.UserInfoPage]
-class UserInfoRouter extends _i6.PageRouteInfo<void> {
-  const UserInfoRouter() : super(UserInfoRouter.name, path: 'user_info');
-
-  static const String name = 'UserInfoRouter';
-}
-
-/// generated route for
-/// [_i17.ListVocabularyPage]
-class ListVocabularyRouter extends _i6.PageRouteInfo<void> {
-  const ListVocabularyRouter() : super(ListVocabularyRouter.name, path: 'list_vocabulary');
-
-  static const String name = 'ListVocabularyRouter';
-}
-
-/// generated route for
-/// [_i18.ListStudyVocabularyPage]
-class ListStudyVocabularyRouter extends _i6.PageRouteInfo<void> {
-  const ListStudyVocabularyRouter() : super(ListStudyVocabularyRouter.name, path: 'list_study_vocabulary');
-
-  static const String name = 'ListStudyVocabularyRouter';
-}
-
-/// generated route for
-/// [_i19.IntroducePage]
-class IntroduceRouter extends _i6.PageRouteInfo<void> {
-  const IntroduceRouter() : super(IntroduceRouter.name, path: 'introduce');
-
-  static const String name = 'IntroduceRouter';
-}
-
-/// generated route for
-/// [_i20.IntroducePage]
-class WaitingRouter extends _i6.PageRouteInfo<void> {
-  const WaitingRouter() : super(WaitingRouter.name, path: 'introduce');
-
-  static const String name = 'WaitingRouter';
-}
-
-/// generated route for
-/// [_i21.ChangePasswordPage]
-class ChangePasswordRouter extends _i6.PageRouteInfo<void> {
-  const ChangePasswordRouter() : super(ChangePasswordRouter.name, path: 'introduce');
-
-  static const String name = 'ChangePasswordRouter';
+  static const String name = 'ProfileRoute';
 }

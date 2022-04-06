@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
 import 'package:flutter_sakura_base/presentation/view_models/login/login_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,15 +11,15 @@ import '../../widgets/atom/glass_morphism_text_area/glass_morphism_text_area.dar
 import '../../widgets/atom/text_area/text_area.dart';
 import '../../widgets/atom/text_view.dart';
 
+
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final loginProvider = ref.watch(loginViewModelProvider(router));
-    final formKey = GlobalKey<FormState>();
-
+    final loginProvider = ref.watch(loginViewModelProvider);
+    final formKey = useMemoized(GlobalKey<FormState>.new);
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -79,6 +80,12 @@ class LoginPage extends HookConsumerWidget {
                           hintText: Messages.password,
                           textType: TextType.text,
                           icon: Icons.lock_outline,
+                          onChange: (value) {
+                            if (loginProvider.errorMessage.isEmpty){
+                              return ;
+                            }
+                            loginProvider.errorMessage = "";
+                          },
                           obscureText: true,
                           onSaved: (value) {
                             loginProvider.password = value!;
@@ -95,7 +102,7 @@ class LoginPage extends HookConsumerWidget {
                           height: kDefaultExThinPadding,
                         ),
                         TextView(
-                          loginProvider.notificationLogin,
+                          loginProvider.errorMessage,
                           fontSize: 14,
                           fontColor: FontColor.red,
                         ),
@@ -122,7 +129,7 @@ class LoginPage extends HookConsumerWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                router.replaceAll([const RegisterRouter()]);
+                                router.replaceAll([const RegisterRoute()]);
                               },
                               child: const TextView(
                                 Messages.register,
@@ -149,4 +156,3 @@ class LoginPage extends HookConsumerWidget {
     );
   }
 }
-

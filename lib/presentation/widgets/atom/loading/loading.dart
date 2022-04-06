@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'indicator.dart';
 
 Future<void> showLoadingDialog(
-    BuildContext context, {
-      IndicatorColor? indicatorColor,
-    }) {
+  BuildContext context, {
+  IndicatorColor? indicatorColor,
+}) {
   return showDialog(
     barrierDismissible: false,
     context: context,
@@ -29,10 +29,8 @@ class LoadingWidget extends StatefulWidget {
   final bool isLoading;
   final Widget child;
 
-  const LoadingWidget({
-    required this.isLoading,
-    required this.child,
-  });
+  const LoadingWidget({required this.isLoading, required this.child, Key? key})
+      : super(key: key);
 
   @override
   _LoadingWidgetState createState() => _LoadingWidgetState();

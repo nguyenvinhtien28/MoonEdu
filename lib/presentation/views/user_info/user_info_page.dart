@@ -23,14 +23,14 @@ class UserInfoPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final userInfoProvider = ref.watch(userViewModelProvider(router));
+    final userInfoProvider = ref.watch(userViewModelProvider);
     final future = useMemoized(userInfoProvider.userInfo);
     final snapshot = useFuture(future);
 
     useEffect(() {
       final timer = Timer(const Duration(seconds: 1), () => {});
       final data = snapshot.data;
-      print("------------------------------$data");
+      debugPrint("------------------------------$data");
       return timer.cancel;
     }, [snapshot.data]);
     return Scaffold(
@@ -102,7 +102,8 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Tên: ${userInfoProvider.name.isEmpty ? snapshot.data!.name : userInfoProvider.name}",
+                    "Tên: ${userInfoProvider.name.isEmpty ?
+                    snapshot.data!.name : userInfoProvider.name}",
                 onTap: () => showChangeNameDialog(
                   context,
                   userInfoProvider.name.toString().isEmpty
@@ -139,7 +140,7 @@ class UserInfoPage extends HookConsumerWidget {
             ItemInfo(
               title: "Mật khẩu: ********",
               onTap: () {
-                router.push(const ChangePasswordRouter());
+                router.push(const ChangePasswordRoute());
               },
             ),
             if (snapshot.hasData)
@@ -156,7 +157,8 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Ngày sinh: ${userInfoProvider.birth.isEmpty ? snapshot.data!.birth : userInfoProvider.birth}",
+                    "Ngày sinh: ${userInfoProvider.birth.isEmpty ?
+                    snapshot.data!.birth : userInfoProvider.birth}",
                 onTap: () {
                   final Picker picker = Picker(
                     adapter: DateTimePickerAdapter(
@@ -200,7 +202,8 @@ class UserInfoPage extends HookConsumerWidget {
             if (snapshot.hasData)
               ItemInfo(
                 title:
-                    "Giới tính: ${userInfoProvider.gender.isEmpty ? snapshot.data!.gender : userInfoProvider.gender}",
+                    "Giới tính: ${userInfoProvider.gender.isEmpty ?
+                    snapshot.data!.gender : userInfoProvider.gender}",
                 onTap: () {
                   final Picker picker = Picker(
                       adapter: PickerDataAdapter<String>(
@@ -222,8 +225,8 @@ class UserInfoPage extends HookConsumerWidget {
                       confirmText: "Xác nhận",
                       cancelText: "Huỷ",
                       onConfirm: (Picker picker, List value) {
-                        print(value.last.toString());
-                        print(picker.getSelectedValues().join(""));
+                        debugPrint(value.last.toString());
+                        debugPrint(picker.getSelectedValues().join(""));
                         userInfoProvider.gender =
                             picker.getSelectedValues().join("");
                         userInfoProvider.updateGender();

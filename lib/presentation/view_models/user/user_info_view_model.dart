@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_sakura_base/data/models/AuthenticationChangeInfo.dart';
 import 'package:flutter_sakura_base/data/sources/remote/api_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,15 +11,14 @@ import '../../../domain/entities/authentication_change_info.dart';
 import '../view_model.dart';
 
 final userViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<UserInfoViewModel, StackRouter>(
-  (ref, router) => UserInfoViewModel(ref.read, router),
+    ChangeNotifierProvider.autoDispose<UserInfoViewModel>(
+  (ref) => UserInfoViewModel(ref.read),
 );
 
 class UserInfoViewModel extends ViewModel {
-  UserInfoViewModel(this.read, this.router) : super(read);
+  UserInfoViewModel(this.read) : super(read);
 
   final Reader read;
-  final StackRouter router;
   late AuthenticationUserModel userModel = const AuthenticationUserModel();
 
   SecureStorageHelper get _storage => read(secureStorageHelperProvider);
@@ -117,13 +116,13 @@ class UserInfoViewModel extends ViewModel {
         },
       ),
     );
-    //print("data coming");
-    //print(response);
+    debugPrint("data coming");
+    debugPrint(response.toString());
     if (response.statusCode == 200) {
       return AuthenticationUserModel.fromJson(response.data!['data']);
     } else {
-      print(response.data);
-      print(response.headers);
+      debugPrint(response.data);
+      debugPrint(response.headers.toString());
       throw Exception('Failed to load album');
     }
   }

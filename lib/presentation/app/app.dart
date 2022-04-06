@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../core/const/constants.dart';
-import '../route/router.gr.dart';
+import '../route/router.dart';
 import 'app_responsive.dart';
 
 class App extends HookWidget {
