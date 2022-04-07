@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../../../core/const/constants.dart';
-import '../../widgets/atom/text_view.dart';
 
+import '../../../core/const/constants.dart';
+import '../../route/router.dart';
+import '../../widgets/atom/text_view.dart';
 
 class NewsPage extends HookConsumerWidget {
   const NewsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = useRouter();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -49,27 +51,30 @@ class NewsPage extends HookConsumerWidget {
                           const SizedBox(
                             height: kDefaultPadding,
                           ),
-                          Container(
-                            width: 70.w,
-                            height: 8.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: AppColors.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.play_arrow_rounded,
-                                  color: AppColors.blue,
-                                  size: 50,
-                                ),
-                                TextView(
-                                  "Bắt đầu học",
-                                  fontColor: AppColors.blue,
-                                  fontSize: FontSize.massive,
-                                  fontWeight: FontWeight.bold,
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () => router.push(const QuizRoute()),
+                            child: Container(
+                              width: 70.w,
+                              height: 8.h,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: AppColors.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.play_arrow_rounded,
+                                    color: AppColors.blue,
+                                    size: 50,
+                                  ),
+                                  TextView(
+                                    "Bắt đầu học",
+                                    fontColor: AppColors.blue,
+                                    fontSize: FontSize.massive,
+                                    fontWeight: FontWeight.bold,
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -151,7 +156,11 @@ class NewsPage extends HookConsumerWidget {
                           const SizedBox(
                             height: kDefaultPadding,
                           ),
-                          Image.asset("assets/images/saohonhtim1.png",width: 151,height: 151,),
+                          Image.asset(
+                            "assets/images/saohonhtim1.png",
+                            width: 151,
+                            height: 151,
+                          ),
                         ],
                       ),
                     ),

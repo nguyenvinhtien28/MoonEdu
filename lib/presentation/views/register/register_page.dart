@@ -16,7 +16,7 @@ class RegisterPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final router = useRouter();
-    final registerProvider = ref.watch(registerViewModelProvider(router));
+    final registerProvider = ref.watch(registerViewModelProvider);
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: SingleChildScrollView(

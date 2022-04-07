@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+/// thực thể tương tác với UI
+///
 class AuthenticationAddVocabulary extends Equatable {
   const AuthenticationAddVocabulary({
     this.english,

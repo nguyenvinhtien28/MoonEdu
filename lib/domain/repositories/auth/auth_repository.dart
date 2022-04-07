@@ -6,7 +6,9 @@ import '../../entities/register_request.dart';
 import '../../entities/token.dart';
 
 abstract class AuthRepository {
-  Future<AuthenticationRegister> register(RegistryRequest request);
+  Future<AuthenticationRegister> register(
+    RegistryRequest request,
+  );
 
   Future<AuthenticationUser> login(
     AuthenticationRequest authRequest,

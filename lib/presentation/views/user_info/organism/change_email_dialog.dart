@@ -5,8 +5,6 @@ import 'package:flutter_sakura_base/presentation/view_models/user/user_info_view
 import 'package:flutter_sakura_base/presentation/widgets/atom/dialog/input_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../route/router.dart';
-
 Future<String?> showChangeEmailDialog(BuildContext context,String text) async {
   return showDialog(
       context: context,
@@ -26,8 +24,7 @@ class ChangeEmailDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
-    final userInfoProvider = ref.watch(userViewModelProvider(router));
+    final userInfoProvider = ref.watch(userViewModelProvider);
     final textController = TextEditingController();
     useEffect(() {
       textController.text = text;

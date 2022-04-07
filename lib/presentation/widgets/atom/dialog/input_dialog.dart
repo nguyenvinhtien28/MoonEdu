@@ -78,6 +78,7 @@ class InputDialog extends StatelessWidget {
                       if (value.isEmpty) {
                         return Messages.notEmpty;
                       }
+                      return null;
                     },
                     style: const TextStyle(fontSize: FontSize.huge),
                     decoration: InputDecoration(

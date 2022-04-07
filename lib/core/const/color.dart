@@ -35,6 +35,11 @@ class AppColors {
   );
   static const int _pinkAccent = 0xFFFFFFFF;
 
+  static const kPrimaryGradient = LinearGradient(
+    colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
   /// #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
 

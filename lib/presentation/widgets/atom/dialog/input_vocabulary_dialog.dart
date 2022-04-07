@@ -87,6 +87,7 @@ class InputVocabularyDialog extends StatelessWidget {
                       if (value.isEmpty) {
                         return Messages.notEmpty;
                       }
+                      return null;
                     },
                     style: const TextStyle(fontSize: FontSize.huge),
                     decoration: InputDecoration(
@@ -100,7 +101,6 @@ class InputVocabularyDialog extends StatelessWidget {
                       fontSize: 18, fontWeight: FontWeight.bold),
                   TextFormField(
                     onSaved: onSavedVN,
-                    // focusNode: _focusNode,
                     validator: (value) {
                       if (value == null) {
                         return null;
@@ -108,6 +108,7 @@ class InputVocabularyDialog extends StatelessWidget {
                       if (value.isEmpty) {
                         return Messages.notEmpty;
                       }
+                      return null;
                     },
                     style: const TextStyle(fontSize: FontSize.huge),
                     decoration: InputDecoration(

@@ -15,10 +15,10 @@ class ChangePasswordPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var isShownotification = useState(false);
+    final isNotification = useState(false);
     final formKey = GlobalKey<FormState>();
     final router = useRouter();
-    final changePasswordProvider = ref.read(userViewModelProvider(router));
+    final changePasswordProvider = ref.read(userViewModelProvider);
     String? oldPassword;
     String? newPassword;
     String? confirmPassword;
@@ -91,7 +91,7 @@ class ChangePasswordPage extends HookConsumerWidget {
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              isShownotification.value? const TextView(
+              isNotification.value? const TextView(
                       "Mật khẩu không khớp",
                       fontSize: 14,
                       fontColor: FontColor.red,
@@ -110,7 +110,7 @@ class ChangePasswordPage extends HookConsumerWidget {
                       changePasswordProvider.newPassword = newPassword!;
                       changePasswordProvider.changePassword();
                     } else {
-                      isShownotification.value = true;
+                      isNotification.value = true;
                     }
                   }
                 },

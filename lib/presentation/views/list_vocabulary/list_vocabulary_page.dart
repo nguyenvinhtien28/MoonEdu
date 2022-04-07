@@ -14,7 +14,7 @@ class ListVocabularyPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final vocabularyProvider =ref.read(vocabularyViewModel(router));
+    final vocabularyProvider =ref.read(vocabularyViewModel);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

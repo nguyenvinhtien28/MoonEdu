@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_sakura_base/core/services/secure_storage/storage_parh.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,12 +7,11 @@ import '../../../core/services/secure_storage/secure_storage.dart';
 import '../../../data/models/AuthenticationUserModel.dart';
 import '../../../domain/usecases/auth/login_use_case.dart';
 import '../../route/router.dart';
-import '../../route/router.gr.dart';
 import '../view_model.dart';
 
 final loginViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<LoginViewModel, StackRouter>(
-  (ref, router) => LoginViewModel(ref.read, router),
+    ChangeNotifierProvider.autoDispose<LoginViewModel>(
+  (ref) => LoginViewModel(ref.read),
 );
 
 enum _LoginErrorStatus {
@@ -22,11 +20,9 @@ enum _LoginErrorStatus {
 }
 
 class LoginViewModel extends ViewModel {
-  LoginViewModel(this.read, this.router) : super(read);
+  LoginViewModel(this.read) : super(read);
 
   final Reader read;
-
-  final StackRouter router;
 
   LoginUseCase get loginUseCase => read(loginUseCaseProvider);
 
@@ -39,7 +35,15 @@ class LoginViewModel extends ViewModel {
   late AuthenticationUserModel user = const AuthenticationUserModel();
 
   // Error message
-  String errorMessage = "";
+  String _errorMessage = "";
+  set errorMessage(String er) {
+    _errorMessage = er;
+    notifyListeners();
+  }
+
+  String get errorMessage => _errorMessage;
+
+  /// address
 
   Future<void> login() async {
     try {

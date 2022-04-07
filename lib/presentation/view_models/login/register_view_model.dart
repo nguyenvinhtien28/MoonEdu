@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_sakura_base/presentation/route/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,8 +7,8 @@ import '../../../domain/usecases/auth/registry_use_case.dart';
 import '../view_model.dart';
 
 final registerViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<RegisterViewModel, StackRouter>((ref, router) {
-  return RegisterViewModel(ref.read, router);
+    <RegisterViewModel>((ref) {
+  return RegisterViewModel(ref.read);
 });
 enum _RegisterErrorStatus {
   failed, // Login failure
@@ -17,11 +16,9 @@ enum _RegisterErrorStatus {
 }
 
 class RegisterViewModel extends ViewModel {
-  RegisterViewModel(this.read, this.router) : super(read);
+  RegisterViewModel(this.read) : super(read);
 
   final Reader read;
-
-  final StackRouter router;
 
   RegistryUseCase get registerUseCase => read(registryUseCaseProvider);
 

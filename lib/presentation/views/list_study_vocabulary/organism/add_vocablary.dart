@@ -4,10 +4,12 @@ import 'package:flutter_sakura_base/core/const/constants.dart';
 import 'package:flutter_sakura_base/presentation/view_models/user/user_info_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../route/router.dart';
 import '../../../widgets/atom/dialog/input_vocabulary_dialog.dart';
 
-Future<String?> showAddVocabularyDialog(BuildContext context,String text) async {
+Future<String?> showAddVocabularyDialog(
+  BuildContext context,
+  String text,
+) async {
   return showDialog(
       context: context,
       builder: (_) {
@@ -26,24 +28,20 @@ class AddVocabularyDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
-    final userInfoProvider = ref.watch(userViewModelProvider(router));
+    final userInfoProvider = ref.watch(userViewModelProvider);
     final textController = TextEditingController();
     useEffect(() {
       textController.text = text;
-      return ;
+      return;
     }, []);
     String? addEN;
-    String? addVN;
     return InputVocabularyDialog(
       title: "Thêm từ mới",
       buttonText: Messages.add,
-      onSavedEN: (value){
+      onSavedEN: (value) {
         addEN = value;
       },
-      onSavedVN: (value) {
-        
-      },
+      onSavedVN: (value) {},
       onSubmit: () {
         userInfoProvider.email = addEN!;
         userInfoProvider.updateEmail();
