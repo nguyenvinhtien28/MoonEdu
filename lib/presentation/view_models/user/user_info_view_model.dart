@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sakura_base/core/services/api/api.dart';
 import 'package:flutter_sakura_base/data/models/AuthenticationChangeInfo.dart';
 import 'package:flutter_sakura_base/data/sources/remote/api_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../core/exceptions/exceptions.dart';
 import '../../../core/services/secure_storage/secure_storage.dart';
 import '../../../core/services/secure_storage/storage_parh.dart';
 import '../../../data/models/AuthenticationUserModel.dart';
@@ -25,7 +27,9 @@ class UserInfoViewModel extends ViewModel {
 
   /// email
   String _email = '';
+
   String get email => _email;
+
   set email(String email) {
     _email = email;
     notifyListeners();
@@ -33,7 +37,9 @@ class UserInfoViewModel extends ViewModel {
 
   /// address
   String _address = '';
+
   String get address => _address;
+
   set address(String? address) {
     _address = address ?? '';
     notifyListeners();
@@ -41,22 +47,29 @@ class UserInfoViewModel extends ViewModel {
 
   /// address
   String _name = '';
+
   String get name => _name;
+
   set name(String name) {
     _name = name;
     notifyListeners();
   }
+
   /// address
   String _gender = '';
+
   String get gender => _gender;
+
   set gender(String gender) {
-    _gender = gender ;
+    _gender = gender;
     notifyListeners();
   }
 
   /// address
   String _oldPassword = '';
+
   String get oldPassword => _oldPassword;
+
   set oldPassword(String oldPassword) {
     _oldPassword = oldPassword;
     notifyListeners();
@@ -64,7 +77,9 @@ class UserInfoViewModel extends ViewModel {
 
   /// address
   String _newPassword = '';
+
   String get newPassword => _newPassword;
+
   set newPassword(String newPassword) {
     _newPassword = newPassword;
     notifyListeners();
@@ -72,7 +87,9 @@ class UserInfoViewModel extends ViewModel {
 
   /// address
   String _birth = '';
+
   String get birth => _birth;
+
   set birth(String birth) {
     _birth = birth;
     notifyListeners();
@@ -104,27 +121,29 @@ class UserInfoViewModel extends ViewModel {
   //     print(e.response?.headers);
   //   }
   // }
-  Future<AuthenticationUserModel> userInfo() async {
-    final token = await _storage.read(StoragePath.token);
-    final Dio dio = Dio();
-    //dio.interceptors.add({'token': token});
-    final Response response = await dio.get(
-      '${ApiPath.api}/api/v1/user/info',
-      options: Options(
-        headers: {
-          StoragePath.token: token, // set content-length
-        },
-      ),
-    );
-    debugPrint("data coming");
-    debugPrint(response.toString());
-    if (response.statusCode == 200) {
+  Future<AuthenticationUserModel?>  userInfo() async {
+    try {
+      if(await isOnline()){
+        print(isOnline.toString());
+      }
+      final response = await ApiClient().invokeAPI(
+        '${ApiPath.api}/api/v1/user/info',
+        apiMethod: ApiMethod.get,
+      );
+      debugPrint("data coming");
+      debugPrint(response.toString());
       return AuthenticationUserModel.fromJson(response.data!['data']);
-    } else {
-      debugPrint(response.data);
-      debugPrint(response.headers.toString());
-      throw Exception('Failed to load album');
+    }  catch (e) {
+      handleExceptions(GenericException.handler(e));
+      return null;
     }
+
+    //   return AuthenticationUserModel.fromJson(response.data!['data']);
+    // } else {
+    //   debugPrint(response.data);
+    //   debugPrint(response.headers.toString());
+    //   throw Exception('Failed to load album');
+    // }
   }
 
   Future<AuthenticationChangeInfo> updateEmail() async {
@@ -133,8 +152,6 @@ class UserInfoViewModel extends ViewModel {
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
         data: {'id': id, 'address': email});
-    //print("data coming");
-    //print(response);
     if (response.statusCode == 200) {
       return AuthenticationChangeInfoModel.fromJson(response.data!['data']);
     } else {
@@ -169,6 +186,7 @@ class UserInfoViewModel extends ViewModel {
       throw Exception('Failed to load album');
     }
   }
+
   Future<AuthenticationChangeInfo> updateGender() async {
     final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);
@@ -181,6 +199,7 @@ class UserInfoViewModel extends ViewModel {
       throw Exception('Failed to load album');
     }
   }
+
   Future<AuthenticationChangeInfo> updateBirth() async {
     final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);

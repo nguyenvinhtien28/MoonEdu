@@ -33,7 +33,7 @@ class ApiClient {
     final secureHelper = SecureStorageHelper();
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
-        final token = await secureHelper.read('token');
+        final token = await SecureStorageHelper().read(StoragePath.token);
         final requestHeaders = {
           'token' : token,
         };

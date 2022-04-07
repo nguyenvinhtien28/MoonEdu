@@ -12,7 +12,7 @@ class ExceptionHandler {
 
   final Reader read;
 
-  StackRouter get router => useRouter();
+  StackRouter get router => read(routerProvider);
 
   ///
   /// Common exception handling
@@ -106,9 +106,13 @@ class ExceptionHandler {
   ///
   void _fatalHandler() {
     if (isRelease) {
-      /// TODO: deleteSecurityToken
-      /// router.replaceAll([const ForbiddenRoute()])
+
     } else {
+      showDialog(
+          context: router.navigatorKey.currentContext!,
+          builder: (_) => const SimpleDialog(
+            title: TextView("tiến bịp Lỗi Debug"),
+          ));
       assert(throw Exception('Please fix the problem'));
     }
   }

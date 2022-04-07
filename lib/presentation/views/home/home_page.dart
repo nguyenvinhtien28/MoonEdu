@@ -11,6 +11,7 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return AutoTabsScaffold(
       routes: const [
         NewsRoute(),
@@ -29,6 +30,12 @@ class HomePage extends HookConsumerWidget {
           showSelectedLabels: true,
           showUnselectedLabels: true,
           onTap: tabsRouter.setActiveIndex,
+          // onTap: (index) {
+          //   tabsRouter.setActiveIndex(index);
+          //     WidgetsBinding.instance!.addPostFrameCallback((_) {
+          //       ref.watch(userViewModelProvider).userInfo();
+          //     });
+          // },
           backgroundColor: AppColors.blue,
           selectedItemColor: AppColors.white,
           items: [
