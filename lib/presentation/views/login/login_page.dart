@@ -11,7 +11,6 @@ import '../../widgets/atom/glass_morphism_text_area/glass_morphism_text_area.dar
 import '../../widgets/atom/text_area/text_area.dart';
 import '../../widgets/atom/text_view.dart';
 
-
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -67,6 +66,12 @@ class LoginPage extends HookConsumerWidget {
                           onSaved: (value) {
                             loginProvider.username = value!;
                           },
+                          onChange: (value) {
+                            if (loginProvider.errorMessage.isEmpty) {
+                              return;
+                            }
+                            loginProvider.errorMessage = "";
+                          },
                         ),
                         const SizedBox(
                           height: kDefaultPadding,
@@ -78,11 +83,11 @@ class LoginPage extends HookConsumerWidget {
                         ),
                         GlassMorphismTextArea(
                           hintText: Messages.password,
-                          textType: TextType.text,
+                          textType: TextType.password,
                           icon: Icons.lock_outline,
                           onChange: (value) {
-                            if (loginProvider.errorMessage.isEmpty){
-                              return ;
+                            if (loginProvider.errorMessage.isEmpty) {
+                              return;
                             }
                             loginProvider.errorMessage = "";
                           },
@@ -91,20 +96,22 @@ class LoginPage extends HookConsumerWidget {
                             loginProvider.password = value!;
                           },
                         ),
+                        if (loginProvider.errorMessage.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: kDefaultExThinPadding),
+                            child: TextView(
+                              loginProvider.errorMessage,
+                              fontSize: 14,
+                              fontColor: FontColor.red,
+                            ),
+                          ),
                         const SizedBox(
-                          height: kDefaultPadding,
+                          height: kDefaultExThinPadding,
                         ),
                         const TextView(
                           "Bạn quên mật khẩu?",
                           fontSize: 14,
-                        ),
-                        const SizedBox(
-                          height: kDefaultExThinPadding,
-                        ),
-                        TextView(
-                          loginProvider.errorMessage,
-                          fontSize: 14,
-                          fontColor: FontColor.red,
                         ),
                         const SizedBox(
                           height: kDefaultExThinPadding,

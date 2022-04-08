@@ -25,8 +25,8 @@ class Messages {
   static const String change = 'Thay đổi';
   static const String register = ' Đăng ký';
   static const String notLessThan6char = 'Không được nhỏ hơn 6 ký tự';
-  static const String errorFormatInputPassword = 'Please enter the password correctly';
-  static const String errorFormatInputEmail = 'Please enter your e-mail address correctly';
+  static const String errorFormatInputPassword = 'Mật khẩu không đúng định dạng';
+  static const String errorFormatInputEmail = 'Email không đúng định dạng';
   static const String textIntroduce = ''' Chào mừng bạn đến với Moon Edu  , "Moon Edu" là một ứng dụng học tiếng anh online thuộc dự án tốt nghiệp của nhóm 4 trường Cao đăng FPT Polytechnic do giáo viên Nguyễn Quang Hưng hướng dẫn.
   
   

@@ -79,11 +79,10 @@ class LoginViewModel extends ViewModel {
   String _getErrorMessage(_LoginErrorStatus errorStatus) {
     switch (errorStatus) {
       case _LoginErrorStatus.connectionError:
-        return "The network is not connected.";
+        return "Không có kết nối mạng!";
 
       case _LoginErrorStatus.failed:
-        return "One of the input items is incorrect. "
-            "Please check the input details and enter again.";
+        return  "Sai tên đăng nhập hoặc mật khẩu";
 
       default:
         return "";

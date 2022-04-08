@@ -52,7 +52,7 @@ class NewsPage extends HookConsumerWidget {
                             height: kDefaultPadding,
                           ),
                           GestureDetector(
-                            onTap: () => router.push(const QuizRoute()),
+                            onTap: () => router.push(const SelectionRoute()),
                             child: Container(
                               width: 70.w,
                               height: 8.h,

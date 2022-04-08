@@ -29,6 +29,14 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const RegisterPage());
     },
+    QuestionVoiceRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const QuestionVoicePage());
+    },
+    ScoreRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const ScorePage());
+    },
     SelectionRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const SelectionPage());
@@ -104,6 +112,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(LoginRoute.name, path: '/login'),
         RouteConfig(RegisterRoute.name, path: '/register'),
+        RouteConfig(QuestionVoiceRoute.name, path: '/selection/organism'),
+        RouteConfig(ScoreRoute.name, path: '/score'),
         RouteConfig(SelectionRoute.name, path: '/selection'),
         RouteConfig(ChangePasswordRoute.name, path: '/change_password'),
         RouteConfig(WaitingRoute.name, path: '/waiting'),
@@ -152,6 +162,23 @@ class RegisterRoute extends PageRouteInfo<void> {
   const RegisterRoute() : super(RegisterRoute.name, path: '/register');
 
   static const String name = 'RegisterRoute';
+}
+
+/// generated route for
+/// [QuestionVoicePage]
+class QuestionVoiceRoute extends PageRouteInfo<void> {
+  const QuestionVoiceRoute()
+      : super(QuestionVoiceRoute.name, path: '/selection/organism');
+
+  static const String name = 'QuestionVoiceRoute';
+}
+
+/// generated route for
+/// [ScorePage]
+class ScoreRoute extends PageRouteInfo<void> {
+  const ScoreRoute() : super(ScoreRoute.name, path: '/score');
+
+  static const String name = 'ScoreRoute';
 }
 
 /// generated route for

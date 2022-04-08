@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../ui/components/atom/assets_gen/assets.gen.dart';
-import 'components/body.dart';
+import '../../../../ui/components/atom/assets_gen/assets.gen.dart';
+import '../molecule/body.dart';
 
-class QuizPage extends HookConsumerWidget {
-  const QuizPage({Key? key}) : super(key: key);
+class QuestionVoicePage extends HookConsumerWidget {
+  const QuestionVoicePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
