@@ -10,6 +10,7 @@ import '../../../core/services/secure_storage/secure_storage.dart';
 import '../../../core/services/secure_storage/storage_parh.dart';
 import '../../../data/models/AuthenticationUserModel.dart';
 import '../../../domain/entities/authentication_change_info.dart';
+import '../../../domain/entities/authentication_user.dart';
 import '../view_model.dart';
 
 final userViewModelProvider =
@@ -121,10 +122,10 @@ class UserInfoViewModel extends ViewModel {
   //     print(e.response?.headers);
   //   }
   // }
-  Future<AuthenticationUserModel?>  userInfo() async {
+  Future<AuthenticationUser?>  userInfo() async {
     try {
       if(await isOnline()){
-        print(isOnline.toString());
+        debugPrint(isOnline.toString());
       }
       final response = await ApiClient().invokeAPI(
         '${ApiPath.api}/api/v1/user/info',

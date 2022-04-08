@@ -3,18 +3,21 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sakura_base/data/models/AuthenticationQuestionsModel.dart';
-import 'package:flutter_sakura_base/presentation/route/router.dart';
 import 'package:flutter_sakura_base/presentation/view_models/view_model.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final questionViewModel =
-    ChangeNotifierProvider.autoDispose<QuestionViewModel>((ref) {
-  return QuestionViewModel(ref.read);
+import '../../route/router.dart';
+
+final selectionViewModel =
+    ChangeNotifierProvider.autoDispose<SelectionViewModel>((ref) {
+  return SelectionViewModel(ref.read);
 });
 
-class QuestionViewModel extends ViewModel {
-  QuestionViewModel(this.read) : super(read);
+class SelectionViewModel extends ViewModel {
+  SelectionViewModel(this.read) : super(read);
 
+  FlutterTts flutterTts = FlutterTts();
   final Reader read;
   int _endTime = 30;
 
@@ -75,6 +78,7 @@ class QuestionViewModel extends ViewModel {
     _correctAns = correctAns;
     notifyListeners();
   }
+
   /// check click
   bool _selected = true;
 
@@ -93,6 +97,7 @@ class QuestionViewModel extends ViewModel {
     _selectedAns = selectedAns;
     notifyListeners();
   }
+
   /// số câu trả lời đúng
   int _numOfCorrectAns = 0;
 
@@ -104,9 +109,11 @@ class QuestionViewModel extends ViewModel {
     _questionNumber = question;
     notifyListeners();
   }
+
   int get questionNumber => _questionNumber;
 
   Future onInit() async {
+
     _animationController = useAnimationController(
       duration: const Duration(seconds: 20),
     );
@@ -115,12 +122,13 @@ class QuestionViewModel extends ViewModel {
     );
     useEffect(
       () {
+        speakQuestion(0);
         animationController.forward().whenComplete(() {
           nextQuestion();
           animationController.reset();
           animationController.forward().whenComplete(nextQuestion);
         });
-        return null;
+        return () => flutterTts.stop();
       },
       [animationController],
     );
@@ -148,7 +156,14 @@ class QuestionViewModel extends ViewModel {
     }
   }
 
-  void updateTheQnNum(int index) {
+  Future updateTheQnNum(int index) async {
     _questionNumber = index + 1;
+    speakQuestion(index);
+  }
+
+  Future speakQuestion(int indexQuestion) async {
+    flutterTts.setLanguage("vi-VN");
+    flutterTts.setPitch(0.8);
+    flutterTts.speak(questions[indexQuestion].question);
   }
 }

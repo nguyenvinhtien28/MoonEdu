@@ -3,6 +3,7 @@ library router;
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_sakura_base/presentation/views/question/score/score_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../views/discover/discover_page.dart';
@@ -19,6 +20,7 @@ import '../views/practice/practice_page.dart';
 import '../views/profile/profile_page.dart';
 import '../views/question/quiz/quiz_page.dart';
 import '../views/register/register_page.dart';
+import '../views/selection/organism/question_voice.dart';
 import '../views/selection/selection_page.dart';
 import '../views/splash/splash_page.dart';
 import '../views/topic/topic_page.dart';
@@ -49,6 +51,13 @@ final routerProvider = Provider<AppRouter>((_) => AppRouter());
     AutoRoute(
       path: '/register',
       page: RegisterPage,
+    ),  AutoRoute(
+      path: '/selection/organism',
+      page: QuestionVoicePage,
+    ),
+    AutoRoute(
+      path: '/score',
+      page: ScorePage,
     ),
     AutoRoute(
       path: '/selection',

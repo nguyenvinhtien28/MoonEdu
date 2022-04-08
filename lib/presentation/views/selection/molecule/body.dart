@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sakura_base/presentation/view_models/question/question_view_model.dart';
+import 'package:flutter_sakura_base/presentation/view_models/selection/selection_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/const/constants.dart';
@@ -13,7 +13,7 @@ class Body extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final quizProvider = ref.watch(questionViewModel);
+    final quizProvider = ref.watch(selectionViewModel);
     quizProvider.onInit();
     return Stack(
       children: [

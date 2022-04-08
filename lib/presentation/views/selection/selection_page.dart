@@ -32,12 +32,14 @@ class SelectionPage extends HookConsumerWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         ItemSelection(
+                          onTap: () => router.replace(const QuizRoute()),
                           title: "Bắt đầu với",
                           image: "assets/images/iconl1.png",
                         ),
                         ItemSelection(
+                          onTap: () => router.replace(const QuizRoute()),
                           title: "Bắt đầu với",
                           image: "assets/images/iconll1.png",
                         ),
@@ -49,40 +51,44 @@ class SelectionPage extends HookConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 42.w,
-                          height: 23.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors.blue),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const TextView(
-                                "Bắt đầu với",
-                                fontColor: AppColors.white,
-                                fontSize: FontSize.xHuge,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              const SizedBox(
-                                height: kDefaultPadding,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 41,
-                                    height: 82,
-                                    color: AppColors.blue[300],
-                                    child:
-                                        Image.asset("assets/images/loa1.png"),
-                                  ),
-                                  Image.asset("assets/images/iconll1.png"),
-                                ],
-                              )
-                            ],
+                        GestureDetector(
+                          child: Container(
+                            width: 42.w,
+                            height: 23.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.blue),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const TextView(
+                                  "Bắt đầu với",
+                                  fontColor: AppColors.white,
+                                  fontSize: FontSize.xHuge,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                const SizedBox(
+                                  height: kDefaultPadding,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 41,
+                                      height: 82,
+                                      color: AppColors.blue[300],
+                                      child:
+                                          Image.asset("assets/images/loa1.png"),
+                                    ),
+                                    Image.asset("assets/images/iconll1.png"),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
+                          onTap: () =>
+                              router.push(const QuestionVoiceRoute()),
                         ),
                         const ItemSelection(
                           title: "Bắt đầu với",
