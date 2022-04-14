@@ -17,7 +17,7 @@ class ProfilePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
     final profileProvider = ref.watch(profileViewModelProvider);
-    final userInfoProvider = ref.read(userViewModelProvider);
+    final userInfoProvider = ref.watch(userViewModelProvider);
     final future = useMemoized(userInfoProvider.userInfo);
     final snapshot = useFuture(future);
 
@@ -33,7 +33,7 @@ class ProfilePage extends HookConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(  
+                  Container(
                     width: 20.w,
                     height: 20.w,
                     decoration: BoxDecoration(
@@ -57,7 +57,9 @@ class ProfilePage extends HookConsumerWidget {
                     children: [
                       if (snapshot.hasData)
                         TextView(
-                          snapshot.data!.name.toString(),
+                          userInfoProvider.name.isEmpty
+                              ? snapshot.data!.name.toString()
+                              : userInfoProvider.name,
                           fontWeight: FontWeight.bold,
                           fontSize: 28,
                           fontColor: AppColors.white,

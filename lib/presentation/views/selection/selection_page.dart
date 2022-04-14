@@ -1,19 +1,27 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/const/constants.dart';
 import '../../route/router.dart';
+import '../../view_models/history/history_view_model.dart';
 import '../../widgets/atom/botom_navigation_bar/item_botom_navigation_one.dart';
 import '../../widgets/atom/text_view.dart';
 import 'molecule/item_selection.dart';
 
 class SelectionPage extends HookConsumerWidget {
-  const SelectionPage({Key? key}) : super(key: key);
+  const SelectionPage({
+    Key? key,
+    @PathParam('id') required this.id,
+  }) : super(key: key);
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final historyProvider = ref.watch(historyViewModelProvider);
     final router = useRouter();
+    print(id);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -34,7 +42,9 @@ class SelectionPage extends HookConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ItemSelection(
-                          onTap: () => router.replace(const QuizRoute()),
+                          onTap: () {
+                            historyProvider.createHistory(id);
+                          },
                           title: "Bắt đầu với",
                           image: "assets/images/iconl1.png",
                         ),
@@ -87,8 +97,7 @@ class SelectionPage extends HookConsumerWidget {
                               ],
                             ),
                           ),
-                          onTap: () =>
-                              router.push(const QuestionVoiceRoute()),
+                          onTap: () => router.push(const QuestionVoiceRoute()),
                         ),
                         const ItemSelection(
                           title: "Bắt đầu với",

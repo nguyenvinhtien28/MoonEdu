@@ -38,8 +38,12 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const ScorePage());
     },
     SelectionRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<SelectionRouteArgs>(
+          orElse: () => SelectionRouteArgs(id: pathParams.getInt('id')));
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const SelectionPage());
+          routeData: routeData,
+          child: SelectionPage(key: args.key, id: args.id));
     },
     ChangePasswordRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
@@ -183,10 +187,27 @@ class ScoreRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SelectionPage]
-class SelectionRoute extends PageRouteInfo<void> {
-  const SelectionRoute() : super(SelectionRoute.name, path: '/selection');
+class SelectionRoute extends PageRouteInfo<SelectionRouteArgs> {
+  SelectionRoute({Key? key, required int id})
+      : super(SelectionRoute.name,
+            path: '/selection',
+            args: SelectionRouteArgs(key: key, id: id),
+            rawPathParams: {'id': id});
 
   static const String name = 'SelectionRoute';
+}
+
+class SelectionRouteArgs {
+  const SelectionRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'SelectionRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

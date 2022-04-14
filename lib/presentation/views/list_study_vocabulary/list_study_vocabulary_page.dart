@@ -6,12 +6,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../route/router.dart';
 import '../../widgets/atom/botom_navigation_bar/item_botom_navigation_two.dart';
 import '../../widgets/atom/seach_view/item_seach.dart';
-import 'molecule/item_vocabulary.dart';
+import '../../widgets/atom/item_vocabulary/item_vocabulary.dart';
 
 class ListStudyVocabularyPage extends HookConsumerWidget {
   const ListStudyVocabularyPage({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +46,7 @@ class ListStudyVocabularyPage extends HookConsumerWidget {
                   ),
                 ],
               ),
-              child: const ItemVocabulary(textEN: "textEN", textVN: "textVN"),
+              child: const ItemVocabulary(textEN: "textEN", textVN: "textVN", pronounce: '',),
             ),
           ],
         ),
@@ -57,10 +55,11 @@ class ListStudyVocabularyPage extends HookConsumerWidget {
         onTap: router.pop,
         more: 'Thêm tự vựng mới',
         onMoreTap: () {
-         showAddVocabularyDialog(context, "Thêm từ mới");
+          showAddVocabularyDialog(context, "Thêm từ mới");
         },
       ),
     );
   }
 }
+
 void doNothing(BuildContext context) {}

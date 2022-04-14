@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_sakura_base/data/models/AuthenticationQuestionsModel.dart';
+import 'package:flutter_sakura_base/data/models/QuestionsModel.dart';
 import 'package:flutter_sakura_base/presentation/route/router.dart';
 import 'package:flutter_sakura_base/presentation/view_models/view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

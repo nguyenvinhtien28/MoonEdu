@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/const/constants.dart';
-import '../../../../../data/models/AuthenticationQuestionsModel.dart';
+import '../../../../../data/models/QuestionsModel.dart';
 import '../../../view_models/selection/selection_view_model.dart';
 import 'option.dart';
 
