@@ -30,17 +30,32 @@ class ApiClient {
   }
 
   static InterceptorsWrapper get _interceptorsWrapper {
-    final secureHelper = SecureStorageHelper();
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
-        final token = await SecureStorageHelper().read(StoragePath.token);
+        String? token = '';
+        if (_needTokenUserList(options.path)) {
+          token = await SecureStorageHelper().read(StoragePath.tokenUserList);
+        } else {
+          token = await SecureStorageHelper().read(StoragePath.token);
+        }
         final requestHeaders = {
-          'token' : token,
+          'token': token,
         };
         options.headers.addAll(requestHeaders);
         handler.next(options);
       },
     );
+  }
+
+  static bool _needTokenUserList(String path) {
+    switch (path) {
+      case ApiPath.histories:
+      case ApiPath.createHistory:
+        return true;
+
+      default:
+        return false;
+    }
   }
 
   static LogInterceptor get _logInterceptor {
@@ -55,15 +70,15 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> invokeAPI(
-      String path, {
-        required ApiMethod apiMethod,
-        Object? bodyData,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) {
+    String path, {
+    required ApiMethod apiMethod,
+    Object? bodyData,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) {
     try {
       switch (apiMethod) {
         case ApiMethod.get:
@@ -138,12 +153,12 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> _get(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     final response = await _dio.get<Map<String, dynamic>>(
       path,
       queryParameters: queryParameters,
@@ -170,14 +185,14 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> _post(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     final response = await _dio.post<Map<String, dynamic>>(
       path,
       data: data,
@@ -206,14 +221,14 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> _patch(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     final response = await _dio.patch<Map<String, dynamic>>(
       path,
       data: data,
@@ -242,12 +257,12 @@ class ApiClient {
   }
 
   Future<Response<Map<String, dynamic>>> _delete(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-      }) async {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) async {
     final response = await _dio.delete<Map<String, dynamic>>(
       path,
       data: data,

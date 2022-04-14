@@ -5,7 +5,7 @@ import 'package:flutter_sakura_base/presentation/view_models/question/question_v
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../core/const/constants.dart';
-import '../../../../../data/models/AuthenticationQuestionsModel.dart';
+import '../../../../../data/models/QuestionsModel.dart';
 import 'option.dart';
 
 class QuestionCard extends HookConsumerWidget {

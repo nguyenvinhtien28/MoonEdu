@@ -1,82 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_sakura_base/core/utils/extension/num.dart';
+import 'package:flutter_sakura_base/presentation/route/router.dart';
+import 'package:flutter_sakura_base/presentation/view_models/topic/topic_view_model.dart';
+import 'package:flutter_sakura_base/presentation/widgets/atom/loading/indicator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../core/const/constants.dart';
-import '../../route/router.dart';
-import '../../widgets/atom/text_view.dart';
+import '../../widgets/atom/item_topic/item_topic.dart';
 
 class TopicPage extends HookConsumerWidget {
   const TopicPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
+    final topicProvider = ref.watch(topicVMProvider);
+    useMemoized(topicProvider.initPublic);
+    final route = useRouter();
     return Scaffold(
       body: SafeArea(
         child: Container(
-            height: 100.h,
-            width: 100.w,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/bk_ga.jpg'),
-                    fit: BoxFit.fill)),
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    router.push(const SelectionRoute());
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    margin: const EdgeInsets.only(
-                        top: kDefaultPadding,
-                        right: kDefaultPadding,
-                        left: kDefaultPadding),
-                    width: 100.w,
-                    height: 22.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.white),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/saohonhtim1.png",
-                          width: 80,
-                          height: 80,
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              TextView(
-                                "Chủ đề 1",
-                                fontSize: FontSize.xHuge,
-                                fontColor: AppColors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              TextView(
-                                "Bài học dùng khi gặp người mới",
-                                fontSize: FontSize.medium,
-                                fontColor: AppColors.black,
-                              )
-                            ],
-                          ),
-                        ),
-                        Image.asset(
-                          "assets/images/play.png",
-                          width: 50,
-                          height: 80,
-                        ),
-                      ],
-                    ),
+          height: 100.h,
+          width: 100.w,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bk_ga.jpg'),
+              fit: BoxFit.fill,
+            ),
+          ),
+          child: topicProvider.listTopicPublic.isEmpty
+              ? const Center(
+                  child: Indicator(
+                    color: IndicatorColor.white,
                   ),
+                )
+              : ListView.builder(
+                  itemCount: topicProvider.listTopicPublic.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ItemTopic(
+                      nameTopic:
+                          topicProvider.listTopicPublic[index].name.toString(),
+                      description: topicProvider
+                          .listTopicPublic[index].description
+                          .toString(),
+                      img:
+                          topicProvider.listTopicPublic[index].image.toString(),
+                      onTap: () {
+                        route.push(SelectionRoute(
+                          id: topicProvider.listTopicPublic[index].id ?? 1,
+                        ));
+                      },
+                    );
+                  },
                 ),
-              ],
-            )),
+        ),
       ),
     );
   }

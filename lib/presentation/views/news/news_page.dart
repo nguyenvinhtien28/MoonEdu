@@ -52,7 +52,7 @@ class NewsPage extends HookConsumerWidget {
                             height: kDefaultPadding,
                           ),
                           GestureDetector(
-                            onTap: () => router.push(const SelectionRoute()),
+                            onTap: () => router.push(SelectionRoute(id: 1)),
                             child: Container(
                               width: 70.w,
                               height: 8.h,
@@ -109,27 +109,30 @@ class NewsPage extends HookConsumerWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          width: 42.w,
-                          height: 22.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors.blue),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const TextView(
-                                "Học theo chủ đề",
-                                fontColor: AppColors.white,
-                                fontSize: FontSize.xLarge,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              const SizedBox(
-                                height: kDefaultPadding,
-                              ),
-                              Image.asset("assets/images/phatam1.png"),
-                            ],
+                        GestureDetector(
+                          onTap: () => router.push(const PersonalTopicRoute()),
+                          child: Container(
+                            width: 42.w,
+                            height: 22.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.blue),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const TextView(
+                                  "Học theo chủ đề",
+                                  fontColor: AppColors.white,
+                                  fontSize: FontSize.xLarge,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                const SizedBox(
+                                  height: kDefaultPadding,
+                                ),
+                                Image.asset("assets/images/phatam1.png"),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -137,31 +140,34 @@ class NewsPage extends HookConsumerWidget {
                     const SizedBox(
                       height: kDefaultWidePadding,
                     ),
-                    Container(
-                      width: 100.w,
-                      height: 26.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors.blue),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const TextView(
-                            "Học theo chủ đề của bạn",
-                            fontColor: AppColors.white,
-                            fontSize: FontSize.xLarge,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          const SizedBox(
-                            height: kDefaultPadding,
-                          ),
-                          Image.asset(
-                            "assets/images/saohonhtim1.png",
-                            width: 151,
-                            height: 151,
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () => router.push(const PersonalStudyTopicRoute()),
+                      child: Container(
+                        width: 100.w,
+                        height: 26.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: AppColors.blue),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const TextView(
+                              "Học theo chủ đề của bạn",
+                              fontColor: AppColors.white,
+                              fontSize: FontSize.xLarge,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(
+                              height: kDefaultPadding,
+                            ),
+                            Image.asset(
+                              "assets/images/saohonhtim1.png",
+                              width: 151,
+                              height: 151,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
