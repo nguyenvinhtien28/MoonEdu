@@ -30,7 +30,6 @@ class HistoryViewModel extends ViewModel {
 
   Future init() async {
     final historyUseCase = await getHistory.call(params: NoParam());
-    // print("------------------aaaaaaaaaaa ${historyUseCase.first.topic!.name}");?
     list = historyUseCase;
     list.sort((a, b) => b.id!.compareTo(a.id!));
     notifyListeners();
@@ -46,7 +45,6 @@ class HistoryViewModel extends ViewModel {
       final params = AddHistoryParam(topic: topic, name: 'test', point: 10);
 
       await addHistory.call(params: params);
-      print(params);
       router.replace(const QuizRoute());
 
     } catch (e) {

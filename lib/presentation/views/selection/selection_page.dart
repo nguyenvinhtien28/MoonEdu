@@ -21,7 +21,6 @@ class SelectionPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final historyProvider = ref.watch(historyViewModelProvider);
     final router = useRouter();
-    print(id);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

@@ -25,9 +25,4 @@ class ProfileViewModel extends ViewModel {
       throw Exception("init profileProvider $e");
     }
   }
-
-  ///
-  /// Select an error message
-  ///
-
 }

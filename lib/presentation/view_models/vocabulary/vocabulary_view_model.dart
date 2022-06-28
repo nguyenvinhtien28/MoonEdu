@@ -17,25 +17,22 @@ class VocabularyViewModel extends ViewModel {
 
   GetVocabularyUseCase get getVocabulary =>
       read(getListVocabularyUseCaseProvider);
+
   List<Vocabulary> listVocabularyPrivate = [];
+
   List<Vocabulary> listVocabularyPublic = [];
+
   Future initPublic() async {
     final params = VocabularyTypeParams('public');
     final topicsUseCase = await getVocabulary.call(params: params);
-    print(topicsUseCase.toString());
-    print(topicsUseCase.first.vietnamese);
     listVocabularyPublic = topicsUseCase;
-    print("-----------------$listVocabularyPublic");
-    print("-----------------${listVocabularyPublic.first.pronunce.toString()}");
     notifyListeners();
   }
 
   Future initPrivate() async {
     final params = VocabularyTypeParams('private');
     final topicsUseCase = await getVocabulary.call(params: params);
-    print(topicsUseCase.toString());
     listVocabularyPrivate = topicsUseCase;
-    print("-----------------$listVocabularyPrivate");
     notifyListeners();
   }
 
