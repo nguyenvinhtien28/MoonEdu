@@ -57,12 +57,6 @@ class HistoryViewModel extends ViewModel {
     }
   }
 
-
-
-
-  ///
-  /// Select an error message
-  ///
   String _getErrorMessage(_HistoryViewModel errorStatus) {
     switch (errorStatus) {
       case _HistoryViewModel.connectionError:
