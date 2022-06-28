@@ -79,7 +79,6 @@ class SelectionViewModel extends ViewModel {
     notifyListeners();
   }
 
-  /// check click
   bool _selected = true;
 
   bool get selected => _selected;
@@ -98,7 +97,6 @@ class SelectionViewModel extends ViewModel {
     notifyListeners();
   }
 
-  /// số câu trả lời đúng
   int _numOfCorrectAns = 0;
 
   int get numOfCorrectAns => _numOfCorrectAns;
@@ -113,7 +111,6 @@ class SelectionViewModel extends ViewModel {
   int get questionNumber => _questionNumber;
 
   Future onInit() async {
-
     _animationController = useAnimationController(
       duration: const Duration(seconds: 20),
     );

@@ -46,7 +46,6 @@ class RegisterViewModel extends ViewModel {
     } catch (e) {
       errorMessage = _getErrorMessage(_RegisterErrorStatus.failed);
       notifyListeners();
-      // If it is a response of forced version upgrade
       if (e is GenericException && e.code == ExceptionType.forcedUpdate) {
         handleExceptions(e);
         debugPrint('-------------------> ' + e.message);
@@ -54,9 +53,6 @@ class RegisterViewModel extends ViewModel {
     }
   }
 
-  ///
-  /// Select an error message
-  ///
   String _getErrorMessage(_RegisterErrorStatus errorStatus) {
     switch (errorStatus) {
       case _RegisterErrorStatus.connectionError:

@@ -30,13 +30,11 @@ class LoginViewModel extends ViewModel {
 
   SecureStorageHelper get _storage => read(secureStorageHelperProvider);
 
-  // State management
   String username = "";
   String password = "";
   String notificationLogin = "";
   late AuthenticationUserModel user = const AuthenticationUserModel();
 
-  // Error message
   String _errorMessage = "";
 
   set errorMessage(String er) {
@@ -45,8 +43,6 @@ class LoginViewModel extends ViewModel {
   }
 
   String get errorMessage => _errorMessage;
-
-  /// address
 
   Future<void> login() async {
     try {
@@ -77,10 +73,8 @@ class LoginViewModel extends ViewModel {
       debugPrint(auth.id.toString());
       router.replace(const HomeRoute());
     } catch (e) {
-      notificationLogin = "Sai tên đăng nhập hoặc mật khẩu";
       errorMessage = _getErrorMessage(_LoginErrorStatus.failed);
       notifyListeners();
-      // If it is a response of forced version upgrade
       if (e is GenericException && e.code == ExceptionType.forcedUpdate) {
         handleExceptions(e);
         debugPrint('-------------------> ' + e.message);

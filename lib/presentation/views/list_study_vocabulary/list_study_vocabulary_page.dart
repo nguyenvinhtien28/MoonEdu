@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../route/router.dart';
 import '../../widgets/atom/botom_navigation_bar/item_botom_navigation_two.dart';
-import '../../widgets/atom/seach_view/item_seach.dart';
 import '../../widgets/atom/item_vocabulary/item_vocabulary.dart';
+import '../../widgets/atom/seach_view/item_seach.dart';
 
 class ListStudyVocabularyPage extends HookConsumerWidget {
   const ListStudyVocabularyPage({Key? key}) : super(key: key);
@@ -46,7 +46,11 @@ class ListStudyVocabularyPage extends HookConsumerWidget {
                   ),
                 ],
               ),
-              child: const ItemVocabulary(textEN: "textEN", textVN: "textVN", pronounce: '',),
+              child: const ItemVocabulary(
+                textEN: "textEN",
+                textVN: "textVN",
+                pronounce: '',
+              ),
             ),
           ],
         ),

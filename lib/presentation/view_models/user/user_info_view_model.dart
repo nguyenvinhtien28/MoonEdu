@@ -26,6 +26,8 @@ class UserInfoViewModel extends ViewModel {
 
   SecureStorageHelper get _storage => read(secureStorageHelperProvider);
 
+  final Dio dio = Dio();
+
   /// email
   String _email = '';
 
@@ -148,7 +150,7 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> updateEmail() async {
-    final Dio dio = Dio();
+
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
@@ -161,7 +163,6 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> updateAddress() async {
-    final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
@@ -175,7 +176,6 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> updateName() async {
-    final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
@@ -189,7 +189,6 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> updateGender() async {
-    final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
@@ -202,7 +201,6 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> updateBirth() async {
-    final Dio dio = Dio();
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
         '${ApiPath.api}/api/v1//user/update',
@@ -215,7 +213,6 @@ class UserInfoViewModel extends ViewModel {
   }
 
   Future<AuthenticationChangeInfo> changePassword() async {
-    final Dio dio = Dio();
     final token = await _storage.read(StoragePath.token);
     final id = await _storage.read(StoragePath.id);
     final Response response = await dio.post(
